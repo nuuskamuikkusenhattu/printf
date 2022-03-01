@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_num_length.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 18:01:26 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/01 15:56:39 by spuustin         ###   ########.fr       */
+/*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
+/*   Updated: 2022/02/28 16:25:48 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
+#include "libft/libft.h"
 
-int	ft_num_length(long long n)
+int ft_printf(const char * format, ...);
+
+int main()
 {
-	int		i;
-
-	i = 1;
-	if (n < 0)
-	{
-		i++;
-		n = n * -1;
-	}
-	while (n > 10)
-	{
-		i++;
-		n = n / 10;
-	}
-	return (i);
+	char *str1 = "vaapukkamehu";
+	char *str2 = "juolukkajehu";
+	int f = 5;
+	int d = 10;
+	ft_printf("nums are %d and %d \n", f, d);
+   return (0);
 }

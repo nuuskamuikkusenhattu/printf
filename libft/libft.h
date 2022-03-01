@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:42:14 by spuustin          #+#    #+#             */
-/*   Updated: 2021/11/29 12:16:37 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/02/28 14:49:45 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,7 @@ int		ft_isspace(char c);
 int		ft_islowercase(char c);
 int		ft_isuppercase(char c);
 
+//
+
+char	*ft_delistr(char *str, char c);
 #endif

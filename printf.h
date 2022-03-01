@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/02/21 13:59:41 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/02/23 12:44:41 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ typedef	struct s_vars
 	
 }			t_vars;
 
-int ft_printf(const char * restrict format, ...);
+int ft_printf(const char * format, ...);
 
 #endif

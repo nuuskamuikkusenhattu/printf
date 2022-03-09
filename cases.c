@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cases.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/08 17:25:25 by spuustin         ###   ########.fr       */
+/*   Created: 2022/03/01 17:12:45 by spuustin          #+#    #+#             */
+/*   Updated: 2022/03/01 17:15:07 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
 #include <stdio.h>
 
 int main(void)
 {
-	printf("%x\n", 5028);
-	ft_putstr(ft_itoabase(5028, 16));
-	printf("\n%x\n", +0);
-	ft_putstr(ft_itoabase(+0, 16));
+	//printf("hahaa"); //ei argumentteja perassa ->>> niin
+	printf("%x", 10);
 	return (0);
 }

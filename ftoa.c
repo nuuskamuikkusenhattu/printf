@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 12:57:07 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/01 14:02:09 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/01 18:45:17 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*fill(double c, int precision)
 		exit(1);
 	while (precision-- > 0)
 	{
-		new[len] = (int) c % 10 + '0';
+		new[len] = (long long) c % 10 + '0';
 		c = c / 10;
 		len--;
 	}
@@ -35,7 +35,7 @@ static char	*fill(double c, int precision)
 	len--;
 	while (len >= 0)
 	{
-		new[len] = (int) c % 10 + '0';
+		new[len] = (long long) c % 10 + '0';
 		c = c / 10;
 		len--;
 	}
@@ -45,7 +45,6 @@ static char	*fill(double c, int precision)
 char	*ftoa(double d, int precision)
 {
 	int		i;
-	double	g;
 
 	i = 0;
 	while (precision > i++)
@@ -55,8 +54,8 @@ char	*ftoa(double d, int precision)
 
 int main(void)
 {
-	double	a = 65456546546545.1;
-	char *str = ftoa(a, 1);
+	double	a = 5.1234567890123456789;
+	char *str = ftoa(a, 18);
 
 	ft_putstr(str);
 	return (0);

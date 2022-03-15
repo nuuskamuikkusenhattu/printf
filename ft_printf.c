@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/15 14:43:24 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/15 20:36:23 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,10 @@ h, l and ll.
 #include "printf.h"
 #include <stdio.h>
 
-static void new_build(t_flag *new)
+static void	fill_build(char *c, t_flag *build)
 {
-	new->print_count = 0;
-	new->base = 10; //this may not be useful
-	new->precision_dot = 0;
-	new->flag = 'E'; // E = empty
-	new->width = 0;
-	new->length = 0;
+	if (c[0] == '.')
+		build->precision_dot = 1;
 }
 
 static int	is_valid_char(char c)
@@ -38,7 +34,7 @@ static int	is_valid_char(char c)
 	char	*characters;
 	int		i;
 
-	characters = "diouxXhlf."; //not to be included '%'
+	characters = "diouxXf."; //not to be included '%'
 	//#0-+ *
 	i = 0;
 	while (characters[i] != '\0')
@@ -50,17 +46,27 @@ static int	is_valid_char(char c)
 	return (0);
 }
 
-static int	dismantle_flag(const char *format, t_flag *build, int index)
+static int	parse_flag(const char *format, t_flag *build)
 {
 	int		i;
 
 	i = 0;
-	while (format[index] && is_valid_char(format[index]) == 1)
-		;
+	if (format[i] == '%')
+	{
+		ft_putchar('%');
+		build->print_count++;
+		return (1);
+	}
+	while (format[i] && is_valid_char(format[i]) == 1)
+	{
+		fill_build(format + i, build);
+		i++;
+	}
+		
 	return (i);
 }
 
-static void	printf_identify_flags(const char *format, va_list *list)
+static int	printf_identify_flags(const char *format, va_list *list)
 {
 	int		i;
 	t_flag	*build;
@@ -72,7 +78,7 @@ static void	printf_identify_flags(const char *format, va_list *list)
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
-			dismantle_flag(format, build, i);
+			i+= parse_flag(format + i + 1, build);
 		else
 		{
 			write(1, &format[i], 1);
@@ -81,6 +87,7 @@ static void	printf_identify_flags(const char *format, va_list *list)
 		}
 		i++;
 	}
+	return (build->print_count);
 }
 
 int ft_printf(const char * format, ...)

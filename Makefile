@@ -6,28 +6,31 @@
 #    By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 13:25:48 by spuustin          #+#    #+#              #
-#    Updated: 2022/03/08 16:37:54 by spuustin         ###   ########.fr        #
+#    Updated: 2022/03/15 20:31:38 by spuustin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lib
-CFILES = ft_itoabase.c main.c
+NAME = lib.a
+CFILES = ft_itoabase.c build.c
+OFILES = *.o libft/*.o
 FLAGS = -g -Wall -Werror -Wextra
-INCL = -I ./libft/
-LIB = -L ./libft -lft
+INCL = .
 
 all: $(NAME)
 
 $(NAME):
 	make -C ./libft re
-	gcc $(FLAGS) $(INCl) $(CFILES) $(LIB) -o $(NAME)
-	rm -rf lib.dSYM
+	gcc $(FLAGS) -I $(INCL) -c $(CFILES)
+	ar rc $(NAME) $(OFILES)
+	ranlib $(NAME)
 
 clean:
 	make -C ./libft clean
-	rm -f *.o
+	rm -rf *.o
+	rm -rf libft/*.o
 
 fclean: clean
-	make -C ./libft fclean
-	rm $(NAME)
+	make -C ./libft clean
+	rm -rf $(NAME)
+
 re: fclean all

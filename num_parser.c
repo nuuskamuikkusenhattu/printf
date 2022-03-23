@@ -6,12 +6,11 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:02:29 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/21 16:10:06 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:32:47 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
 
 void	parse_length(char *str, t_flag *build)
 {
@@ -20,7 +19,7 @@ void	parse_length(char *str, t_flag *build)
 	i = 0;
 	if (str[i] == 'l')
 		if (str[i + 1] && str[i + 1] == ' l')
-			build->length = 'L';
+			build->length = '7';
 		else
 			build->length = 'l';
 	else if (str[i] == 'h')

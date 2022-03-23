@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/21 16:02:43 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:52:26 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,27 @@ h, l and ll.
 #include "printf.h"
 #include <stdio.h>
 
+static int	is_valid_char(char c)
+{
+	if (c == '-' || c == '-')
+		return (1);
+	return (0);
+}
+
 static int	parse_flag(const char *format, t_flag *build)
 {
-	int		i;
-
-	i = 0;
-	if (format[i] == '%')
+	while (is_valid_char(format[build->i]) == 1 && format[build->i])
 	{
-		ft_putchar('%');
+	if (format[build->i] == '%')
+	{
+		write(1, '%', 1);
 		build->print_count++;
 		return (1);
 	}
-	while (format[i] && is_valid_char(format[i]) == 1)
-	{
-		fill_build(format + i, build);
-		i++;
+	else if (format[build->i] == '-')
+		printf_minus(build, format);
 	}
-		
-	return (i);
+	return (1);
 }
 
 static int	printf_identify_flags(const char *format, va_list *list)
@@ -49,7 +52,8 @@ static int	printf_identify_flags(const char *format, va_list *list)
 	t_flag	*build;
 
 	i = 0;
-	if (!(build = (t_flag *) malloc(sizeof(t_flag))))
+	build = (t_flag *) malloc(sizeof(t_flag));
+	if (!build)
 		exit(-1);
 	new_build(build);
 	while (format[i] != '\0')

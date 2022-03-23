@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/08 17:06:26 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/21 20:20:04 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	num_len(unsigned int nbr, int base)
 	return (len);
 }
 
-char	*ft_itoabase(unsigned int nbr, int base)
+char	*printf_itoabase(unsigned int nbr, int base, int precision)
 {
 	int			len;
 

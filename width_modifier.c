@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cases.c                                            :+:      :+:    :+:   */
+/*   width_modifier.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 17:12:45 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/01 17:15:07 by spuustin         ###   ########.fr       */
+/*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
+/*   Updated: 2022/03/22 16:14:20 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "printf.h"
 
-int main(void)
+int		printf_minus(t_flag *build, char *format)
 {
-	//printf("hahaa"); //ei argumentteja perassa ->>> niin
-	printf("%x", 10);
-	return (0);
+	int		ret;
+
+	ret = 0;
+	build->minus = '-';
+	build->i++;
+	if (format[build->i] == '0')
+		build->i++;
+	build->width = ft_atoi(format + build->i + 1);
+	ret += ft_num_length(build->width) + 1;
+	build->i += ret;
+	return (ret);
+}
+
+int		printf_plus(t_flag *build, char *format)
+{
+	
 }

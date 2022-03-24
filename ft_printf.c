@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/22 12:52:26 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:06:07 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	is_valid_char(char c)
 	return (0);
 }
 
-static int	parse_flag(const char *format, t_flag *build)
+static int	parse_flag(const char *format, t_build *build, va_list *list)
 {
 	while (is_valid_char(format[build->i]) == 1 && format[build->i])
 	{
@@ -41,7 +41,7 @@ static int	parse_flag(const char *format, t_flag *build)
 		return (1);
 	}
 	else if (format[build->i] == '-')
-		printf_minus(build, format);
+		printf_minus(build, format, list);
 	}
 	return (1);
 }
@@ -49,22 +49,21 @@ static int	parse_flag(const char *format, t_flag *build)
 static int	printf_identify_flags(const char *format, va_list *list)
 {
 	int		i;
-	t_flag	*build;
+	t_build	*build;
 
 	i = 0;
-	build = (t_flag *) malloc(sizeof(t_flag));
+	build = (t_build *) malloc(sizeof(t_build));
 	if (!build)
 		exit(-1);
 	new_build(build);
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%')
-			i+= parse_flag(format + i + 1, build);
+			i+= parse_flag(format + i + 1, build, &list);
 		else
 		{
-			write(1, &format[i], 1);
+			write(1, &format[i], 1); //could be improved
 			build->print_count++;
-			ft_putnbr(build->print_count);
 		}
 		i++;
 	}

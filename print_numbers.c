@@ -6,14 +6,14 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/21 20:52:46 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/23 20:06:56 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
 // di
-void	signed_ints(t_flag *build, va_list *list)
+void	signed_ints(t_build *build, va_list *list)
 {
 	long long		num;
 	char			*str;
@@ -32,7 +32,7 @@ void	signed_ints(t_flag *build, va_list *list)
 	free(str);
 }
 //oux
-void	unsigned_ints(t_flag *build, va_list *list)
+void	unsigned_ints(t_build *build, va_list *list)
 {
 	unsigned long long		num;
 	char 					*str;

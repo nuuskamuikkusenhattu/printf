@@ -1,0 +1,44 @@
+sepostelija — Today at 1:25 AM
+jaa intit unsigned (oux) ja signed(di) mukaan.
+unsignedeissa: H = (unsigned char)va_arg(list, int)
+h = (u short) va (int)
+E = (u long long)va_arg(list, unsigned int)
+l ja ll = (unsigned long long )va(ull)
+signedeissä
+sama mutta signed
+long doublet
+l -> nb = (long double)va_arg(*list, double);
+L->(ld)va(ld)
+E->(ld)va(d)
+tulostava funktio vois ottaa (unsigned) long long vastaan
+sit voi tutkia inttien precision tulosteita
+widtheja 
+toimiiko itoa_base sekä signed että unsigned vai pitääkö tehä kaks eri
+jos X toupper jos x normi
+sepostelija — Today at 1:54 AM
+mitä x ja o palauttaa precision kaa
+eli 
+spottaa flagi
+-> parsi flagi loppuun
+ -> kutsu funktiota
+palaa spottaamaan, nollaa flagit 
+
+sepostelija — Today at 2:13 AM
+testaa luoda *build, alustaa, tallettaa tietoja,lähettää build, tulostaa
+vrt luoda build, lähettää &build
+
+sepostelija — Today at 10:03 AM
+new_build -> reset_build
+
+sepostelija — Yesterday at 11:45 PM
+if (flagi on (s tai c))
+(va_arg(*list, char *))
+(char) va_arg(*ap, int)
+
+ja vastaanottaa char c tai char *str sekä buildin
+
+jos se on nroihin liittyvä voi lähettää koko variable-listan ja buildin 
+munhan ei tarvii mistään palauttaa inttejä oikeestaa välttämättä, voin pääfunktiosta vaa returnaa sen totalcount
+niin kauan ku formatissa on tekstiä
+jos se on %, parsi + tulosta
+jos se ei oo % mutta se on, olemassa, write mofo 

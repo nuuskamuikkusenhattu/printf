@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/23 14:46:11 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/24 11:57:42 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@
 #include <stdarg.h>
 #include "libft/libft.h"
 #include <unistd.h>
+#include <stdio.h> //debug
 #include <stdlib.h>
 
-typedef	struct s_flag
+typedef	struct s_build
 {
 	int		print_count;
 	int		i;
@@ -28,25 +29,29 @@ typedef	struct s_flag
 	int		precision;
 	char	flag;
 	int		width;
+	char	fill;
 	char	length; //h,H(hh),l,7(ll),L
 	char	plus;
 	char	minus;
 	char	hashtag; //adds a decimalpoint to floats even when no decimals
-}			t_flag;
+}			t_build;
 
 int ft_printf(const char * format, ...);
 char	*ftoa(double d, int precision);
-void new_build(t_flag *new);
+void new_build(t_build *new);
+
+//width
+int		printf_minus(t_build *build, const char *format, va_list *list);
 
 //integers
-void	signed_ints(t_flag *build, va_list *list);
-void	unsigned_ints(t_flag *build, va_list *list);
+void	signed_ints(t_build *build, va_list *list);
+void	unsigned_ints(t_build *build, va_list *list);
 char	*printf_itoabase(unsigned int nbr, int base, int precision);
 
 //strings
-void	print_string(char *format, t_flag *build);
+int		print_string(t_build *build, const char *format, va_list list);
 
-//width
-int		printf_minus(t_flag *build, char *format);
+//chars
+void	print_char(char c, t_build *b);
 
 #endif

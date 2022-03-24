@@ -6,25 +6,25 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:02:29 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/21 20:32:47 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:39:12 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void	parse_length(char *str, t_flag *build)
+void	parse_length(char *str, t_build *b)
 {
 	int i;
 
 	i = 0;
 	if (str[i] == 'l')
 		if (str[i + 1] && str[i + 1] == ' l')
-			build->length = '7';
+			b->length = 'L';
 		else
-			build->length = 'l';
+			b->length = 'l';
 	else if (str[i] == 'h')
 		if (str[i + 1] && str[i + 1] == 'h')
-			build->length == 'H';
+			b->length == 'H';
 		else
-			build->length == 'h';
+			b->length == 'h';
 }

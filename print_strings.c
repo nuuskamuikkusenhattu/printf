@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:32:32 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/24 19:59:07 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/24 20:10:28 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void	print_string_left(char *str, int len, t_build *b)
 {
 	write(1, str, len);
-	while(b->width - len>= 0)
+	while(b->width - len> 0)
 	{
-		write(1, b->fill, 1);
+		write(1, &(b->fill), 1);
 		len++;
 	}
 }
 
 void	print_string_right(char *str, int len, t_build *b)
 {
-	while (b->width - len >= 0)
+	while (b->width - len > 0)
 	{
-		write(1, b->fill, 1);
+		write(1, &(b->fill), 1);
 		b->width--;
 	}
 	write(1, str, len);
@@ -36,7 +36,7 @@ void	print_string(t_build *b, char *str)
 {
 	int		len;
 
-	len = ft_strlen(str);
+	len = (int) ft_strlen(str);
 	if (b->width > len)
 		b->print_count += b->width;
 	else

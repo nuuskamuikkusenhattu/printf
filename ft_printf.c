@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/23 20:06:07 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/24 22:32:59 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,49 +25,54 @@ h, l and ll.
 
 static int	is_valid_char(char c)
 {
-	if (c == '-' || c == '-')
+	if (c == '-' || c == '.' || c == 'l' || c == 'h' || c == '#' \
+	 || (c >= '0' && c <= '9') || c == 'd' || c == 'i' || c == 'o' \
+	 || c == 'u' || c == 'x' || c == 'X')
 		return (1);
 	return (0);
 }
-
-static int	parse_flag(const char *format, t_build *build, va_list *list)
+// vois teha nii et flag-charit on omassa funktiossa jotka tunnistetaa
+//tai jos semmone nahdaan nii mennaan uuteen funktioon joka kutsuu tulostajaa
+static void		parse_flag(const char *str, t_build *b, va_list *list)
 {
-	while (is_valid_char(format[build->i]) == 1 && format[build->i])
+	while (str[b->i] && is_valid_char(str[b->i]) > 0)
 	{
-	if (format[build->i] == '%')
-	{
-		write(1, '%', 1);
-		build->print_count++;
-		return (1);
+	if (str[b->i] == '%')
+		;
+	else if (str[b->i] == '-')
+		printf_minus(b, str, list);
+	else if (str[b->i] == 'd' || str[b->i == 'i'])
+		signed_ints(b, &list);
+	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
+	|| str[b->i] == 'X')
+		unsigned_ints(b, &list);
+	else if (str[b->i] == 'c')
+		print_char((char) va_arg(*list, int), b);
+	else if(str[b->i] == 's')
+		print_string(b, (char *) va_arg(*list, char *));
 	}
-	else if (format[build->i] == '-')
-		printf_minus(build, format, list);
-	}
-	return (1);
 }
 
-static int	printf_identify_flags(const char *format, va_list *list)
+static int	printf_identify_flag(const char *format, va_list *list)
 {
-	int		i;
-	t_build	*build;
+	t_build	*b;
 
-	i = 0;
-	build = (t_build *) malloc(sizeof(t_build));
-	if (!build)
+	b = (t_build *) malloc(sizeof(t_build));
+	if (!b)
 		exit(-1);
-	new_build(build);
-	while (format[i] != '\0')
+	new_build(b);
+	while (format[b->i] != '\0')
 	{
-		if (format[i] == '%')
-			i+= parse_flag(format + i + 1, build, &list);
+		if (format[b->i] == '%')
+			parse_flag(format, b, list);
 		else
 		{
-			write(1, &format[i], 1); //could be improved
-			build->print_count++;
+			write(1, &(format[b->i]), 1);
+			b->print_count++;
+			b->i++;
 		}
-		i++;
 	}
-	return (build->print_count);
+	return (b->print_count);
 }
 
 int ft_printf(const char * format, ...)

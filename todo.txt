@@ -23,13 +23,6 @@ spottaa flagi
  -> kutsu funktiota
 palaa spottaamaan, nollaa flagit 
 
-sepostelija — Today at 2:13 AM
-testaa luoda *build, alustaa, tallettaa tietoja,lähettää build, tulostaa
-vrt luoda build, lähettää &build
-
-sepostelija — Today at 10:03 AM
-new_build -> reset_build
-
 sepostelija — Yesterday at 11:45 PM
 if (flagi on (s tai c))
 (va_arg(*list, char *))
@@ -42,3 +35,10 @@ munhan ei tarvii mistään palauttaa inttejä oikeestaa välttämättä, voin p�
 niin kauan ku formatissa on tekstiä
 jos se on %, parsi + tulosta
 jos se ei oo % mutta se on, olemassa, write mofo 
+
+str ja char:
+jos seka - etta 0, niin ohita 0
+
+korjaa itoabase tukemaan precision
+
+hash

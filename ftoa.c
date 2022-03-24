@@ -6,11 +6,11 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 12:57:07 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/01 18:45:17 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/24 23:21:08 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// takes a double / float as parameter and turns it into ascii char,
+// takes a double / float as parameter and turns it into ascii char pointer,
 //probably
 
 #include "libft/libft.h"

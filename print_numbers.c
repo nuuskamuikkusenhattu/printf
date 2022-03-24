@@ -6,48 +6,51 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/23 20:06:56 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/24 23:02:51 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
 // di
-void	signed_ints(t_build *build, va_list *list)
+void	signed_ints(t_build *b, va_list list)
 {
-	long long		num;
+	long long int		num;
 	char			*str;
 
-	if (build->length == 'l')
-		num = (long) build->value;
-	else if (build->length == 'H')
-		num = (char) build->value;
-	else if (build->length == 'h')
-		num = (short) build->value;
+	if (b->length == 'H')
+		num = (char)va_arg(list, int);
+	else if (b->length == 'h')
+		num = (short int)va_arg(list, int);
+	else if (b->length == 'E')
+		num = (long long int)va_arg(list, int);
+	else if (b->length == 'l')
+		num = (long long int)va_arg(list, long int);
 	else
-		num = (int) build->value;
-	str = printf_itoabase(num, build->base, build->precision);
-	write(1, str, ft_strlen(str)); //tama on tyhmaa
-	build->print_count += ft_strlen(str); //tama on tyhmaa
+		num = (long long int)va_arg(list, long long int);
+	str = printf_itoabase(num, b->base, b->precision);
+	//print
 	free(str);
 }
 //oux
-void	unsigned_ints(t_build *build, va_list *list)
+void	unsigned_ints(t_build *b, va_list list)
 {
-	unsigned long long		num;
+	unsigned long long int	num;
 	char 					*str;
 
-	if (build->length == 'l')
-		num = (unsigned long) build->value;
-	else if (build->length == 'H')
-		num = (unsigned char) build->value;
-	else if (build->length == 'h')
-		num = (unsigned short) build->value;
+	if (b->length == 'H')
+		num = (unsigned char)va_arg(list, int);
+	else if (b->length == 'h')
+		num = (unsigned short int)va_arg(list, int);
+	else if (b->length == 'E')
+		num = (unsigned long long)va_arg(list, unsigned int);
+	else if (b->length == 'l')
+		num = (unsigned long long int)va_arg(list, unsigned long int);
 	else
-		num = (unsigned int) build->value;
+		num = (unsigned long long int)va_arg(list, unsigned long long int);
 	// joku kasittely x ja X valille
-	str = printf_itoabase(num, build->base, build->precision);
-	write(1, str, ft_strlen(str)); //tama on tyhmaa
-	build->print_count += ft_strlen(str); //tama on tyhmaa
+	//hash mita ikina tekeekaan
+	str = printf_itoabase(num, b->base, b->precision);
+	//print
 	free(str);
 }

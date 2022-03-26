@@ -42,7 +42,7 @@ void	unsigned_ints(t_build *b, va_list list)
 		num = (unsigned char)va_arg(list, int);
 	else if (b->length == 'h')
 		num = (unsigned short int)va_arg(list, int);
-	else if (b->length == 'E' && b->flag != 'p')
+	else if (b->length == 'E')
 		num = (unsigned long long)va_arg(list, unsigned int);
 	else if (b->length == 'l')
 		num = (unsigned long long int)va_arg(list, unsigned long int);

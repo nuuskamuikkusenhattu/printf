@@ -24,7 +24,6 @@ typedef	struct s_build
 	int		print_count;
 	int		i;
 	int		base;
-	char	dot;
 	int		precision;
 	char	flag;
 	int		width;
@@ -32,6 +31,7 @@ typedef	struct s_build
 	char	length; //h,H(hh),l, L(ll)
 	char	plus;
 	char	minus;
+	int		space;
 	char	hashtag; //adds a decimalpoint to floats even when no decimals
 }			t_build;
 

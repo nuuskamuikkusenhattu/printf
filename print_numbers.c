@@ -42,7 +42,7 @@ void	unsigned_ints(t_build *b, va_list list)
 		num = (unsigned char)va_arg(list, int);
 	else if (b->length == 'h')
 		num = (unsigned short int)va_arg(list, int);
-	else if (b->length == 'E')
+	else if (b->length == 'E' && b->flag != 'p')
 		num = (unsigned long long)va_arg(list, unsigned int);
 	else if (b->length == 'l')
 		num = (unsigned long long int)va_arg(list, unsigned long int);
@@ -53,4 +53,14 @@ void	unsigned_ints(t_build *b, va_list list)
 	str = printf_itoabase(num, b->base, b->precision);
 	//print
 	free(str);
+}
+//written in home
+void	floats(t_build *b, va_list list)
+{
+	long double num;
+
+	if (b->length == 'L')
+		num = (long double)va_arg(list, long double);
+	else
+		num = (long double)va_arg(list, double);
 }

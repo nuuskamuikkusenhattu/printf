@@ -45,12 +45,20 @@ static void		parse_flag(const char *str, t_build *b, va_list *list)
 		signed_ints(b, &list);
 	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
 	|| str[b->i] == 'X')
+	{
+		if (str[b->i] == 'x' || str[b->i] == 'X')
+			b->base == 16;
+		if (str[b->i] == 'o')
+			b->base == 8;
+		b->flag = str[b->i];
 		unsigned_ints(b, &list);
+	}
 	else if (str[b->i] == 'c')
 		print_char((char) va_arg(*list, int), b);
 	else if(str[b->i] == 's')
 		print_string(b, (char *) va_arg(*list, char *));
 	}
+	b->i++;
 }
 
 static int	printf_identify_flag(const char *format, va_list *list)
@@ -64,9 +72,13 @@ static int	printf_identify_flag(const char *format, va_list *list)
 	while (format[b->i] != '\0')
 	{
 		if (format[b->i] == '%')
+		{
+			b->i++;
 			parse_flag(format, b, list);
+		}
 		else
 		{
+			// this can be improved heavily with minimizing amount of function-calls
 			write(1, &(format[b->i]), 1);
 			b->print_count++;
 			b->i++;

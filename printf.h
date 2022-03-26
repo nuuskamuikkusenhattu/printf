@@ -36,7 +36,8 @@ typedef	struct s_build
 }			t_build;
 
 int ft_printf(const char * format, ...);
-char	*ftoa(double d, int precision);
+
+//struct
 void new_build(t_build *new);
 
 //width
@@ -47,8 +48,8 @@ void	signed_ints(t_build *build, va_list list);
 void	unsigned_ints(t_build *build, va_list list);
 char	*printf_itoabase(unsigned int nbr, int base, int precision);
 
-//strings
-void	print_string(t_build *b, char *str);
+//floats
+char	*ftoa(long double d, int precision);
 
 //chars
 void	print_char(char c, t_build *b);

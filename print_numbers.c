@@ -29,7 +29,7 @@ void	signed_ints(t_build *b, va_list list)
 	else
 		num = (long long int)va_arg(list, long long int);
 	str = printf_itoabase(num, b->base, b->precision);
-	//print
+	write(1, str, (int) ft_strlen(str));
 	free(str);
 }
 //oux
@@ -48,19 +48,23 @@ void	unsigned_ints(t_build *b, va_list list)
 		num = (unsigned long long int)va_arg(list, unsigned long int);
 	else
 		num = (unsigned long long int)va_arg(list, unsigned long long int);
-	// joku kasittely x ja X valille
 	//hash mita ikina tekeekaan
 	str = printf_itoabase(num, b->base, b->precision);
-	//print
+	if (b->flag == 'X')
+		ft_capitalize_str(str);
+	write(1, str, (int) ft_strlen(str));
 	free(str);
 }
 //written in home
 void	floats(t_build *b, va_list list)
 {
 	long double num;
+	char		*str;
 
 	if (b->length == 'L')
 		num = (long double)va_arg(list, long double);
 	else
 		num = (long double)va_arg(list, double);
+	str = ftoa(num, b->precision);
+	write(1, str, (int) ft_strlen(str));
 }

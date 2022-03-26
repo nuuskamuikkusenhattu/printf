@@ -13,10 +13,11 @@
 // takes a double / float as parameter and turns it into ascii char pointer,
 //probably
 
+#include "printf.h"
 #include "libft/libft.h"
 #include <stdio.h>
 
-static char	*fill(double c, int precision)
+static char	*fill(long double c, int precision)
 {
 	char	*new;
 	int		len;
@@ -42,7 +43,7 @@ static char	*fill(double c, int precision)
 	return (new);
 }
 
-char	*ftoa(double d, int precision)
+char	*ftoa(long double d, int precision)
 {
 	int		i;
 
@@ -50,13 +51,4 @@ char	*ftoa(double d, int precision)
 	while (precision > i++)
 		d = d * 10;
 	return (fill(d, precision));
-}
-
-int main(void)
-{
-	double	a = 5.1234567890123456789;
-	char *str = ftoa(a, 18);
-
-	ft_putstr(str);
-	return (0);
 }

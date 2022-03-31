@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   width_modifier.c                                   :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/23 20:06:18 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:46:31 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-int		printf_minus(t_build *build, const char *format, va_list *list)
+/*
+this function is called after reading a minus.
+it sets the minus to be true, and gets width with ft_atoi.
+*/
+int		define_minus(t_build *build, const char *format)
 {
 	int		ret;
 
@@ -26,4 +30,23 @@ int		printf_minus(t_build *build, const char *format, va_list *list)
 	build->i += ret;
 	//call print
 	return (ret);
+}
+/*
+this function is called after reading a dot.
+it then sets precision with ft_atoi, or from argument-list,
+depending if theres a * or a number between 1-9.
+*/
+void	set_precision(t_build *b, const char *format, va_list list)
+{
+	int		pres;
+
+	b->i++;
+	if (format[b->i] >= '1' && format[b->i] <= '9')
+	{
+		pres =  ft_atoi(format + b->i);
+		b->precision = pres;
+		b->i += ft_num_length(pres);
+	}
+	else if (format[b->i] == '*')
+		b->precision = (int) va_arg(list, int);
 }

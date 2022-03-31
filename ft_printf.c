@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/24 22:32:59 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:46:35 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,34 +31,43 @@ static int	is_valid_char(char c)
 		return (1);
 	return (0);
 }
-// vois teha nii et flag-charit on omassa funktiossa jotka tunnistetaa
-//tai jos semmone nahdaan nii mennaan uuteen funktioon joka kutsuu tulostajaa
+
 static void		parse_flag(const char *str, t_build *b, va_list *list)
 {
 	while (str[b->i] && is_valid_char(str[b->i]) > 0)
 	{
-	if (str[b->i] == '%')
-		;
-	else if (str[b->i] == '-')
-		printf_minus(b, str, list);
-	else if (str[b->i] == 'd' || str[b->i == 'i'])
-		signed_ints(b, &list);
-	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
-	|| str[b->i] == 'X')
-	{
-		if (str[b->i] == 'x' || str[b->i] == 'X')
-			b->base == 16;
-		if (str[b->i] == 'o')
-			b->base == 8;
-		b->flag = str[b->i];
-		unsigned_ints(b, &list);
+		if (str[b->i] == '%')
+			;
+		else if (str[b->i] == '-')
+			define_minus(b, str);
+		else if (str[b->i] == '.')
+			set_precision(b, str, &list);
+		else if (str[b->i] == 'd' || str[b->i == 'i'])
+			signed_ints(b, &list);
+		else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
+		|| str[b->i] == 'X')
+		{
+			if (str[b->i] == 'x' || str[b->i] == 'X')
+				b->base == 16;
+			if (str[b->i] == 'o')
+				b->base == 8;
+			b->flag = str[b->i];
+			unsigned_ints(b, &list);
+		}
+		else if (str[b->i] == 'c')
+			print_char((char) va_arg(*list, int), b);
+		else if(str[b->i] == 's')
+			print_string(b, (char *) va_arg(*list, char *));
+		b->i++;
 	}
-	else if (str[b->i] == 'c')
-		print_char((char) va_arg(*list, int), b);
-	else if(str[b->i] == 's')
-		print_string(b, (char *) va_arg(*list, char *));
-	}
-	b->i++;
+	reset_build(b);
+}
+
+static void	print_unwritten(const char *format, t_build *b)
+{
+	write(1, format + (b->i - b->unwritten), b->unwritten);
+	b->print_count += b->unwritten;
+	b->unwritten = 0;
 }
 
 static int	printf_identify_flag(const char *format, va_list *list)
@@ -73,17 +82,19 @@ static int	printf_identify_flag(const char *format, va_list *list)
 	{
 		if (format[b->i] == '%')
 		{
+			if (b->unwritten != 0)
+				print_unwritten(format, b);
 			b->i++;
 			parse_flag(format, b, list);
 		}
 		else
 		{
-			// this can be improved heavily with minimizing amount of function-calls
-			write(1, &(format[b->i]), 1);
-			b->print_count++;
+			b->unwritten++;
 			b->i++;
 		}
 	}
+	if (b->unwritten != 0)
+		print_unwritten(format, b);
 	return (b->print_count);
 }
 

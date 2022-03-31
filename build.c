@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:21:17 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/24 11:03:14 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:36:52 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ void reset_build(t_build *new)
 	new->print_count = 0;
 	new->i = 0;
 	new->base = 10;
-	new->dot = 'E';
 	new->flag = 'E';
 	new->width = 0;
 	new->length = 'E';
+	new->precision = 0;
+	new->unwritten = 0;
 }
 
 /*

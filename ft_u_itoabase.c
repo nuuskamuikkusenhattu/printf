@@ -6,20 +6,34 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/21 20:20:04 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 15:52:13 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft/libft.h"
-#include <stdio.h>
 
-static char	*fill(unsigned int nbr, int base, int len)
+static char	*fill(unsigned int nbr, int base, int len, int prec)
 {
 	int		temp;
 	char	*str;
-
-	str = ft_strnew(len);
+	int		i;
+	
+	i = 0;
+	if (prec > len)
+	{
+		str = ft_strnew(prec);
+		if (!str)
+			return (NULL);
+		while (prec - len > i)
+		{
+			str[i] = '0';
+			i++;
+		}
+		len = prec - 1;
+	}
+	else
+		str = ft_strnew(len);
 	if (!str)
 		return (NULL);
 	while (len >= 0)
@@ -48,12 +62,12 @@ static int	num_len(unsigned int nbr, int base)
 	return (len);
 }
 
-char	*printf_itoabase(unsigned int nbr, int base, int precision)
+char	*printf_u_itoabase(unsigned int nbr, int base, int precision)
 {
 	int			len;
 
 	if (base < 2)
 		return (NULL);
 	len = num_len(nbr, base);
-	return (fill(nbr, base, len - 1));
+	return (fill(nbr, base, len - 1, precision));
 }

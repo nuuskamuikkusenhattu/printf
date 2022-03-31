@@ -1,15 +1,7 @@
 support precision/width for ints
 
-support itoa_base with precision
-
-write ft_capitalize.c (libft, ./libft)
-
-katso mita precision 5 int 13 tekee
 width ja precision diouxx
 str = printf_itoabase(num, b->base, b->precision); //onkohan nain sittenkaan ?
-
-mita jos minus, mita jos ei
-mita jos hash, mita jos ei
 
 itoabase:
 jos num_len on pienempi ku precision, num_len = precision
@@ -19,4 +11,3 @@ toimiiko itoabase neg. numeroilla vai joudunko tekee erillisen unsigned ja signe
 
 pointerit
 jos arvo on 0 nii tapahtuu outouksia
-epanollalla voi vaa print_unsigned type.x ?

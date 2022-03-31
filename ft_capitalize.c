@@ -6,12 +6,11 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:22:01 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/29 16:29:14 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/30 11:49:16 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
+#include "printf.h"
 void	ft_capitalize(char *str)
 {
 	int		i;
@@ -24,9 +23,4 @@ void	ft_capitalize(char *str)
 		i++;
 	}
 }
-int main(void)
-{
-	char *str = "aaaaAAAA";
-	ft_capitalize(str);
-	return (0);
-}
+

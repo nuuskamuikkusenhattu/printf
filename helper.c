@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 15:46:31 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:55:04 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		define_minus(t_build *build, const char *format)
 	int		ret;
 
 	ret = 0;
-	build->minus = '-';
+	build->minus = 1;
 	build->i++;
 	if (format[build->i] == '0')
 		build->i++;

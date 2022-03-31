@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 16:10:43 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:41:25 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 static void test_itoabase()
 {
 	ft_putstr("mine: ");
-	ft_putstr(printf_u_itoabase(150,16,0));
+	ft_putstr(printf_itoabase(150,16,0, NULL));
 	printf(", orig: %x\n", 150);
 	ft_putstr("mine: ");
-	ft_putstr(printf_u_itoabase(-150,16,0));
+	ft_putstr(printf_itoabase(-150,16,0, NULL));
 	printf(", orig: %x\n", -150);
 	ft_putstr("mine: ");
-	ft_putstr(printf_u_itoabase(150,8,0));
+	ft_putstr(printf_itoabase(150,8,0, NULL));
 	printf(", orig: %o\n", 150);
 	ft_putstr("mine: ");
-	ft_putstr(printf_u_itoabase(-150,8,0));
+	ft_putstr(printf_itoabase(-150,8,0, NULL));
 	printf(", orig: %o\n", -150);
 	printf("\n%.5i\n", 15);
-	ft_putstr(printf_s_itoabase(15,10,5));
+	ft_putstr(printf_itoabase(15,10,5, NULL));
 	printf("\n%.5i\n", -15);
-	ft_putstr(printf_s_itoabase(-15,10,5));
+	ft_putstr(printf_itoabase(-15,10,5, NULL));
 }
 
 static void itoabase_width()
@@ -41,11 +41,11 @@ static void itoabase_width()
 static void itoabase_precision()
 {
 	printf("%.5d\n", 8);
-	ft_putstr(printf_u_itoabase(8,10,5));
+	ft_putstr(printf_itoabase(8,10,5, NULL));
 	printf("\n%.5x\n", 17);
-	ft_putstr(printf_u_itoabase(17,16,5));
+	ft_putstr(printf_itoabase(17,16,5, NULL));
 	printf("\n%.*o\n", 17, 17);
-	ft_putstr(printf_u_itoabase(17,8,17));
+	ft_putstr(printf_itoabase(17,8,17, NULL));
 }
 
 static void test_width()

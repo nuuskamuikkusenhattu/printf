@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 16:03:32 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:00:17 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ typedef	struct s_build
 	int		width;
 	char	fill;
 	char	length; //h,H(hh),l, L(ll)
-	char	plus;
-	char	minus;
+	int		plus;
+	int		minus;
 	int		space;
 	char	hashtag; //adds a decimalpoint to floats even when no decimals
 	int 	unwritten;
+	int		strlen;
+	int		isneg;
 }			t_build;
 
 int ft_printf(const char * format, ...);
@@ -49,8 +51,7 @@ void	set_precision(t_build *build, const char *format, va_list list);
 //integers
 void	signed_ints(t_build *build, va_list list);
 void	unsigned_ints(t_build *build, va_list list);
-char	*printf_u_itoabase(unsigned int nbr, int base, int precision);
-char	*printf_s_itoabase(int nbr, int base, int precision);
+char	*printf_itoabase(unsigned int nbr, int base, int precision, t_build *b);
 
 //floats
 char	*ftoa(long double d, int precision);
@@ -58,4 +59,6 @@ char	*ftoa(long double d, int precision);
 //chars
 void	print_char(char c, t_build *b);
 
+//helpers
+void	printf_plus_or_space(t_build *b)
 #endif

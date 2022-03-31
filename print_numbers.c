@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 15:53:19 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:00:39 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,32 @@ void	print_hash(t_build *b)
 		b->print_count += 2;
 	}
 }
+
+void	print_number(t_build *b, char *str)
+{
+	if (b->minus == 1)
+	{
+		if ((b->plus == 1 && b->isneg == 0) || (b->space == 1 && b->isneg == 0))
+			printf_plus_or_space(b);
+		write(1, str, b->strlen);
+		while (b->width - b->plus - b->space > b->strlen)
+		{
+			write(1, b->fill, 1);
+			b->width--;
+		}
+	}
+	else
+	{
+		while (b->width - b->plus - b->space > b->strlen)
+		{
+			write(1, b->fill, 1);
+			b->width--;
+		}
+		if ((b->plus == 1 && b->isneg == 0) || (b->space == 1 && b->isneg == 0))
+			printf_plus_or_space(b);
+		write(1, str, b->strlen);
+	}
+}
 // di
 void	signed_ints(t_build *b, va_list list)
 {
@@ -48,10 +74,13 @@ void	signed_ints(t_build *b, va_list list)
 		num = (long long int)va_arg(list, long int);
 	else
 		num = (long long int)va_arg(list, long long int);
-	str = printf_s_itoabase(num, b->base, b->precision);
-	len = (int) ft_strlen(str);
-	write(1, str, len);
-	b->print_count += len;
+	if (num < 0)
+	{
+		num *= -1;
+		write(1, "-", 1);
+		b->print_count++;
+	}
+	str = printf_itoabase(num, b->base, b->precision, b);
 	free(str);
 }
 //oux
@@ -73,9 +102,7 @@ void	unsigned_ints(t_build *b, va_list list)
 		num = (unsigned long long int)va_arg(list, unsigned long int);
 	else
 		num = (unsigned long long int)va_arg(list, unsigned long long int);
-	if (b->width > b->precision)
-		b->precision = b->width;
-	str = printf_u_itoabase(num, b->base, b->precision);
+	str = printf_itoabase(num, b->base, b->precision, b);
 	if (b->flag == 'X')
 		ft_capitalize(str);
 	len = (int) ft_strlen(str);

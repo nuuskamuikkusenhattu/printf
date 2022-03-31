@@ -1,13 +1,4 @@
-support precision/width for ints
-
-width ja precision diouxx
 str = printf_itoabase(num, b->base, b->precision); //onkohan nain sittenkaan ?
-
-itoabase:
-jos num_len on pienempi ku precision, num_len = precision
--> alkuun taytetaan nollia iha luikauksella
-
-toimiiko itoabase neg. numeroilla vai joudunko tekee erillisen unsigned ja signed?
 
 pointerit
 jos arvo on 0 nii tapahtuu outouksia

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:00:17 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:45:13 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int ft_printf(const char * format, ...);
 void reset_build(t_build *new);
 
 //width
-int		define_minus(t_build *build, const char *format);
+void	define_minus(t_build *build, const char *format);
+void	get_width(t_build *b, const char *format);
 //precision
 void	set_precision(t_build *build, const char *format, va_list list);
 

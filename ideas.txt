@@ -1,4 +1,2 @@
-str = printf_itoabase(num, b->base, b->precision); //onkohan nain sittenkaan ?
-
 pointerit
 jos arvo on 0 nii tapahtuu outouksia

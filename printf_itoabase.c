@@ -6,12 +6,11 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 21:42:12 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:07:23 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include "libft/libft.h"
 
 static char	*fill(unsigned int nbr, int base, int len, int prec)
 {

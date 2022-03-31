@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:00:39 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 22:08:03 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	print_number(t_build *b, char *str)
 	{
 		if ((b->plus == 1 && b->isneg == 0) || (b->space == 1 && b->isneg == 0))
 			printf_plus_or_space(b);
+		else if (b->isneg == 1)
+			write(1, "-", 1);
 		write(1, str, b->strlen);
 		while (b->width - b->plus - b->space > b->strlen)
 		{
@@ -54,6 +56,8 @@ void	print_number(t_build *b, char *str)
 		}
 		if ((b->plus == 1 && b->isneg == 0) || (b->space == 1 && b->isneg == 0))
 			printf_plus_or_space(b);
+		else if (b->isneg == 1)
+			write(1, "-", 1);
 		write(1, str, b->strlen);
 	}
 }
@@ -76,14 +80,13 @@ void	signed_ints(t_build *b, va_list list)
 		num = (long long int)va_arg(list, long long int);
 	if (num < 0)
 	{
+		b->isneg = 1;
 		num *= -1;
-		write(1, "-", 1);
-		b->print_count++;
 	}
 	str = printf_itoabase(num, b->base, b->precision, b);
 	free(str);
 }
-//oux
+//ouxX
 void	unsigned_ints(t_build *b, va_list list)
 {
 	unsigned long long int	num;

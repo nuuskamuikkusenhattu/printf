@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 21:41:25 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:17:41 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,14 @@ static void test_pointers()
 }
 int main(void)
 {
-	test_itoabase();
+	//test_itoabase();
 	//itoabase_width();
 	//itoabase_precision();
 	//printf("%.300d", 50);
 	//test_width();
 	//double d = 123.123456789123456789123456789;
 	//test_pointers();
-
+	printf("%d\n", 5);
+	ft_printf("%d\n", 5);
 	return (0);
 }

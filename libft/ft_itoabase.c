@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf_itoabase.c                                  :+:      :+:    :+:   */
+/*   ft_itoabase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:54:39 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 21:44:52 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
 static char	*fill(unsigned int nbr, int base, int len, int prec)
 {
@@ -48,7 +48,7 @@ static char	*fill(unsigned int nbr, int base, int len, int prec)
 	return (str);
 }
 
-static int	num_len(unsigned int nbr, int base, t_build *b)
+static int	num_len(unsigned int nbr, int base)
 {
 	int		len;
 
@@ -58,16 +58,15 @@ static int	num_len(unsigned int nbr, int base, t_build *b)
 		nbr = nbr / base;
 		len++;
 	}
-	b->strlen = len;
 	return (len);
 }
 
-char	*printf_itoabase(unsigned int nbr, int base, int precision, t_build *b)
+char	*ft_itoabase(unsigned int nbr, int base, int precision)
 {
 	int			len;
 
 	if (base < 2)
 		return (NULL);
-	len = num_len(nbr, base, b);
+	len = num_len(nbr, base);
 	return (fill(nbr, base, len - 1, precision));
 }

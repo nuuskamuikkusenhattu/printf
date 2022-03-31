@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:46:16 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:04:22 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	define_minus(t_build *build, const char *format)
 	build->width = ft_atoi(format + build->i + 1);
 	ret += ft_num_length(build->width);
 	build->i += ret;
-	//call print
-	return (ret);
 }
 /*
 this function is called after reading a dot.

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:48:00 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:15:49 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,24 @@ static int	is_valid_prechar(char c)
 		return (1);
 	return (0);
 }
-static void	identify_flag(const char *str, t_build *b, va_list *list)
+static void	identify_flag(const char *str, t_build *b, va_list list)
 {
 	b->flag = str[b->i];
 	if (str[b->i] == 'd' || str[b->i == 'i'])
-		signed_ints(b, &list);
+		signed_ints(b, list);
 	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
 		|| str[b->i] == 'X')
 	{
 		if (str[b->i] == 'x' || str[b->i] == 'X')
-			b->base == 16;
+			b->base = 16;
 		if (str[b->i] == 'o')
-			b->base == 8;
-		unsigned_ints(b, &list);
+			b->base = 8;
+		unsigned_ints(b, list);
 	}
 	else if (str[b->i] == 'c')
-		print_char((char) va_arg(*list, int), b);
+		print_char((char) va_arg(list, int), b);
 	else if(str[b->i] == 's')
-		print_string(b, (char *) va_arg(*list, char *));
+		print_string(b, (char *) va_arg(list, char *));
 	else if (str[b->i == 'd'])
 		; //floatti
 	else
@@ -58,7 +58,7 @@ static void	identify_flag(const char *str, t_build *b, va_list *list)
 	}
 }
 
-static void	parse_flag(const char *str, t_build *b, va_list *list)
+static void	parse_flag(const char *str, t_build *b, va_list list)
 {
 	while (str[b->i] && is_valid_prechar(str[b->i]) > 0)
 	{
@@ -71,7 +71,7 @@ static void	parse_flag(const char *str, t_build *b, va_list *list)
 		else if (str[b->i] == ' ')
 			b->space = 1;
 		else if (str[b->i] == '.')
-			set_precision(b, str, &list);
+			set_precision(b, str, list);
 		else if (str[b->i] == '0')
 			b->fill = '0';
 		else if (str[b->i] >= '1' && str[b->i] <= '9')
@@ -89,14 +89,14 @@ static void	print_unwritten(const char *format, t_build *b)
 	b->unwritten = 0;
 }
 
-static int	printf_identify_flag(const char *format, va_list *list)
+static int	printf_identify_flag(const char *format, va_list list)
 {
 	t_build	*b;
 
 	b = (t_build *) malloc(sizeof(t_build));
 	if (!b)
 		exit(-1);
-	new_build(b);
+	reset_build(b);
 	while (format[b->i] != '\0')
 	{
 		if (format[b->i] == '%')
@@ -122,7 +122,7 @@ int ft_printf(const char * format, ...)
 	va_list list;
 	va_start(list, format);
 	
-	printf_identify_flag(format, &list);
+	printf_identify_flag(format, list);
 	va_end(list);
 	return (0);
 }

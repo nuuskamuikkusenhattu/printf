@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 19:42:14 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/01 16:05:59 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:01:31 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,11 @@ void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void	ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 char	**ft_free_array(char **array);
-int		ft_num_length(long long n);
+int		ft_num_length(int n);
 int		ft_isspace(char c);
 int		ft_islowercase(char c);
 int		ft_isuppercase(char c);
-
 //
-
-char	*ft_delistr(char *str, char c);
+char	*ft_itoabase(unsigned int nbr, int base, int precision);
+void	ft_capitalize(char *str);
 #endif

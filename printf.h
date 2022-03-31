@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:45:13 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/03/31 23:10:13 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef	struct s_build
 int ft_printf(const char * format, ...);
 
 //struct
-void reset_build(t_build *new);
+void	reset_build(t_build *new);
 
 //width
 void	define_minus(t_build *build, const char *format);
@@ -60,6 +60,9 @@ char	*ftoa(long double d, int precision);
 //chars
 void	print_char(char c, t_build *b);
 
+//strings
+void	print_string(t_build *b, char *str);
+
 //helpers
-void	printf_plus_or_space(t_build *b)
+void	printf_plus_or_space(t_build *b);
 #endif

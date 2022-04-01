@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 23:10:13 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:44:53 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef	struct s_build
 	int		plus;
 	int		minus;
 	int		space;
-	char	hashtag; //adds a decimalpoint to floats even when no decimals
+	int		hashtag; //adds a decimalpoint to floats even when no decimals
 	int 	unwritten;
 	int		strlen;
 	int		isneg;
@@ -41,7 +41,8 @@ typedef	struct s_build
 int ft_printf(const char * format, ...);
 
 //struct
-void	reset_build(t_build *new);
+void	reset_build(t_build *b);
+void 	new_build(t_build *b);
 
 //width
 void	define_minus(t_build *build, const char *format);

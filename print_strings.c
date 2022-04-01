@@ -6,11 +6,23 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:32:32 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/24 20:10:28 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:07:30 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+static void	print_null(t_build *b)
+{
+	int		len;
+
+	len = 6;
+	//ft_putstr("im ready to print null\n");
+	if (b->precision < len && b->precision != 0)
+		len = b->precision;
+	write(1, "(null)", len);
+	b->print_count += len;
+}
 
 void	print_string_left(char *str, int len, t_build *b)
 {
@@ -36,6 +48,14 @@ void	print_string(t_build *b, char *str)
 {
 	int		len;
 
+	if (!str)
+	{
+		//ft_putstr("i think its a null\n");
+		print_null(b);
+	}
+	else
+	{
+	//ft_putstr("i dont think its a null\n");
 	len = (int) ft_strlen(str);
 	if (b->width > len)
 		b->print_count += b->width;
@@ -45,4 +65,5 @@ void	print_string(t_build *b, char *str)
 		print_string_left(str, len, b);
 	else
 		print_string_right(str, len, b);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 23:15:49 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:44:08 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,29 @@ h, l and ll.
 static int	is_valid_prechar(char c)
 {
 	if (c == '-' || c == '.' || c == 'l' || c == 'h' || c == '#' \
-	 || (c >= '0' && c <= '9') || c == 'd' || c == 'i' || c == 'o' \
-	 || c == 'u' || c == 'x' || c == 'X' || c == 'p' \
-	 || c == ' ' || c == '+' || c == '-')
+	 || (c >= '0' && c <= '9' ) || c == ' ' || c == '+' || c == '-')
 		return (1);
 	return (0);
 }
 static void	identify_flag(const char *str, t_build *b, va_list list)
 {
+	// ft_putstr("im soon to identify\n");
+	// ft_putstr("the flag in question is: ");
+	// ft_putchar(str[b->i]);
+	// ft_putstr(" and i store it to be: ");
 	b->flag = str[b->i];
-	if (str[b->i] == 'd' || str[b->i == 'i'])
+	// ft_putchar(b->flag);
+	// write(1,"\n", 1);
+	if (b->flag == 'd' || b->flag == 'i')
+	{
+		// ft_putstr("i think its a di\n");
 		signed_ints(b, list);
+	}
+		
 	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
 		|| str[b->i] == 'X')
 	{
+		// ft_putstr("i think its a ouxX\n");
 		if (str[b->i] == 'x' || str[b->i] == 'X')
 			b->base = 16;
 		if (str[b->i] == 'o')
@@ -46,25 +55,35 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 		unsigned_ints(b, list);
 	}
 	else if (str[b->i] == 'c')
-		print_char((char) va_arg(list, int), b);
-	else if(str[b->i] == 's')
-		print_string(b, (char *) va_arg(list, char *));
-	else if (str[b->i == 'd'])
-		; //floatti
-	else
 	{
-		write(1, "error.\n", 7);
-		exit(-1);
+		// ft_putstr("i think its a char\n");
+		print_char((char) va_arg(list, int), b);
 	}
+		
+	else if(str[b->i] == 's')
+	{
+		//ft_putstr("i think its a string\n");
+		print_string(b, (char *) va_arg(list, char *));
+	}
+		
+	else if (str[b->i] == 'd')
+	{
+		// ft_putstr("i think its a float\n");
+	}
+	else if (str[b->i] == '%')
+	{
+		write(1, &str[b->i], 1);
+		b->print_count++;
+	}
+	else
+		b->i--;
 }
 
 static void	parse_flag(const char *str, t_build *b, va_list list)
 {
-	while (str[b->i] && is_valid_prechar(str[b->i]) > 0)
+	while (str[b->i] && is_valid_prechar(str[b->i]) == 1)
 	{
-		if (str[b->i] == '%')
-			; //what ever %% does
-		else if (str[b->i] == '-')
+		if (str[b->i] == '-')
 			define_minus(b, str);
 		else if (str[b->i] == '+')
 			b->plus = 1;
@@ -78,7 +97,9 @@ static void	parse_flag(const char *str, t_build *b, va_list list)
 			get_width(b, str);
 		b->i++;
 	}
+	//ft_putstr("i've parsed\n");
 	identify_flag(str, b, list);
+	//ft_putstr("ive printed\n");
 	reset_build(b);
 }
 
@@ -96,7 +117,7 @@ static int	printf_identify_flag(const char *format, va_list list)
 	b = (t_build *) malloc(sizeof(t_build));
 	if (!b)
 		exit(-1);
-	reset_build(b);
+	new_build(b);
 	while (format[b->i] != '\0')
 	{
 		if (format[b->i] == '%')
@@ -105,6 +126,7 @@ static int	printf_identify_flag(const char *format, va_list list)
 				print_unwritten(format, b);
 			b->i++;
 			parse_flag(format, b, list);
+			b->i++;
 		}
 		else
 		{
@@ -121,8 +143,8 @@ int ft_printf(const char * format, ...)
 {
 	va_list list;
 	va_start(list, format);
-	
-	printf_identify_flag(format, list);
+	int ret;
+	ret = printf_identify_flag(format, list);
 	va_end(list);
-	return (0);
+	return (ret);
 }

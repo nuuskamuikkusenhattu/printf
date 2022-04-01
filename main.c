@@ -6,71 +6,161 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 23:17:41 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:34:55 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include <stdio.h>
 
-static void test_itoabase()
+
+static void string_test()
 {
-	ft_putstr("mine: ");
-	ft_putstr(printf_itoabase(150,16,0, NULL));
-	printf(", orig: %x\n", 150);
-	ft_putstr("mine: ");
-	ft_putstr(printf_itoabase(-150,16,0, NULL));
-	printf(", orig: %x\n", -150);
-	ft_putstr("mine: ");
-	ft_putstr(printf_itoabase(150,8,0, NULL));
-	printf(", orig: %o\n", 150);
-	ft_putstr("mine: ");
-	ft_putstr(printf_itoabase(-150,8,0, NULL));
-	printf(", orig: %o\n", -150);
-	printf("\n%.5i\n", 15);
-	ft_putstr(printf_itoabase(15,10,5, NULL));
-	printf("\n%.5i\n", -15);
-	ft_putstr(printf_itoabase(-15,10,5, NULL));
+	char *str1 = "vaapukka";
+	char *str2 = "mehu";
+	int ret1, ret2;
+	ret1 = printf("printing a string from pointer: %s\n", str1);
+	ret2 = ft_printf("printing a string from pointer: %s\n", str1);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("printing null: %s\n", NULL);
+	ret2 = ft_printf("printing null: %s\n", NULL);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("printing two strings: %s%s\n", str1, str2);
+	ret2 = ft_printf("printing two strings: %s%s\n", str1, str2);
+	printf("%d %d\n", ret1, ret2);
+}
+static void char_test()
+{
+	char a = 'a';
+	char b = 'b';
+	int ret1, ret2;
+	ret1 = printf("%c\n", a);
+	ret2 = ft_printf("%c\n", a);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("printing two chars: %c %c\n", a, b);
+	ret2 = ft_printf("printing two chars: %c %c\n", a, b);
+	printf("%d %d\n", ret1, ret2);
 }
 
-static void itoabase_width()
+static void d_test()
 {
-	printf("%5x\n", 16);
-	printf("%-5x\n", 16);
-}
-static void itoabase_precision()
-{
-	printf("%.5d\n", 8);
-	ft_putstr(printf_itoabase(8,10,5, NULL));
-	printf("\n%.5x\n", 17);
-	ft_putstr(printf_itoabase(17,16,5, NULL));
-	printf("\n%.*o\n", 17, 17);
-	ft_putstr(printf_itoabase(17,8,17, NULL));
+	int n = 42;
+	int m = -42;
+	int ret1, ret2;
+	ret1 = printf("%d\n", n);
+	ret2 = ft_printf("%d\n", n);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%d %d %d\n", 42242, -2442424, 0);
+	ret2 = printf("%d %d %d\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
 }
 
-static void test_width()
+static void i_test()
 {
-	//printf("%-015.8d\n", 1000000);
-	printf("%-15.8d\n", 1000000);
-	printf("%15.8d\n", 1000000);
+	int n = 42;
+	int m = -42;
+	int ret1, ret2;
+	ret1 = printf("%i\n", n);
+	ret2 = ft_printf("%i\n", n);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%i %i %i\n", 42242, -2442424, 0);
+	ret2 = printf("%i %i %i\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
 }
 
-static void test_pointers()
+static void o_test()
 {
-	char *str = "vaapukka";
-	printf("%p\n", str);
-	printf("%p\n", NULL);
+	int n = 42;
+	int m = -42;
+	int ret1, ret2;
+	ret1 = printf("%o\n", n);
+	ret2 = ft_printf("%o\n", n);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%o %o %o\n", 42242, -2442424, 0);
+	ret2 = printf("%o %o %o\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
 }
+
+static void x_test()
+{
+	int n = 42;
+	int m = -42;
+	int ret1, ret2;
+	ret1 = printf("%x\n", n);
+	ret2 = ft_printf("%x\n", n);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%x %x %x\n", 42242, -2442424, 0);
+	ret2 = printf("%x %x %x\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
+}
+
+static void X_test()
+{
+	int n = 42;
+	int m = -42;
+	int ret1, ret2;
+	ret1 = printf("%X\n", n);
+	ret2 = ft_printf("%X\n", n);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%X %X %X\n", 42242, -2442424, 0);
+	ret2 = printf("%X %X %X\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
+}
+static void percent_test()
+{
+	int ret1, ret2;
+	ret1 = printf("%%\n");
+	ret2 = ft_printf("%%\n");
+	printf("%d %d\n", ret1, ret2);
+}
+static void ellas_tests()
+{
+	int ret1,ret2;
+	// ft_printf("%lld\n", 9223372036854775807);
+	// ft_printf("%lld\n", -9223372036854775808);
+	// ft_printf("%-015.8d\n", 1000000);
+	// ft_printf("%.d %.0d\n", 42, 43);
+	// ft_printf("%.d %.0d\n", 0, 0);
+	// ft_printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
+	// ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
+	// ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
+	ret1 = printf("%5.x %5.0x\n", 0, 0);
+	ret2 = ft_printf("%5.x %5.0x\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.x %.0x\n", 0, 0);
+	ret2 = ft_printf("%.x %.0x\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+	// ft_printf("%5.x %5.0x\n", 0, 0);
+	// ft_printf("%.15f\n", 3.141593);
+	// ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
+	// ret1 = printf("%\n");
+	// ret2 = ft_printf("%\n");
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%%\n");
+	// ret2 = ft_printf("%%\n");
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%sjeccu\n", NULL);
+	// ret2 = ft_printf("%sjeccu\n", NULL);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%.5s\n", NULL);
+	// ret2 = ft_printf("%.5s\n", NULL);
+	// printf("%d %d\n", ret1, ret2);
+	// ft_printf("%.5s\n", NULL);
+	//ret1 = printf("%s\n", NULL);
+	//ret2 = ft_printf("%s\n", NULL);
+	//printf("%d %d\n", ret1, ret2);
+}
+
 int main(void)
 {
-	//test_itoabase();
-	//itoabase_width();
-	//itoabase_precision();
-	//printf("%.300d", 50);
-	//test_width();
-	//double d = 123.123456789123456789123456789;
-	//test_pointers();
-	printf("%d\n", 5);
-	ft_printf("%d\n", 5);
+	//string_test();
+	//char_test();
+	//d_test();
+	//i_test();
+	//o_test();
+	//x_test();
+	//X_test();
+	//percent_test();
+	ellas_tests();
 	return (0);
 }

@@ -6,31 +6,50 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:21:17 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 23:04:57 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:45:24 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-//resets the values of a build to be 0's
-// and the base to be 10
+//resets the values of a build to be empty other than the index (i)
+//and the print_count (value to be returned)
 
-void reset_build(t_build *new)
+void reset_build(t_build *b)
 {
-	new->print_count = 0;
-	new->i = 0;
-	new->base = 10;
-	new->flag = 'E';
-	new->width = 0;
-	new->length = 'E';
-	new->precision = 0;
-	new->unwritten = 0;
-	new->fill = ' ';
-	new->plus = 0;
-	new->isneg = 0;
-	new->space = 0;
+	b->base = 10;
+	b->precision = 0;
+	b->flag = 'E';
+	b->width = 0;
+	b->fill = ' ';
+	b->length = 'E';
+	b->plus = 0;
+	b->minus = 0;
+	b->space = 0;
+	b->hashtag = 0;
+	b->unwritten = 0;
+	b->strlen = 0;
+	b->isneg = 0;
 }
 
+void new_build(t_build *b)
+{
+	b->print_count = 0;
+	b->i = 0;
+	b->base = 10;
+	b->precision = 0;
+	b->flag = 'E';
+	b->width = 0;
+	b->fill = ' ';
+	b->length = 'E';
+	b->plus = 0;
+	b->minus = 0;
+	b->space = 0;
+	b->hashtag = 0;
+	b->unwritten = 0;
+	b->strlen = 0;
+	b->isneg = 0;
+}
 /*
 
 	int		print_count;

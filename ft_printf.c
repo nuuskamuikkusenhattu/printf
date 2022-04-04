@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 12:59:01 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:12:00 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,16 @@ static void	parse_flag(const char *str, t_build *b, va_list list)
 			b->plus = 1;
 		else if (str[b->i] == ' ')
 			b->space = 1;
+		else if (str[b->i] == '#')
+			b->hashtag = 1;
 		else if (str[b->i] == '.')
 			set_precision(b, str, list);
 		else if (str[b->i] == '0' && (str[b->i - 1] != '.') && b->minus == 0)
 			b->fill = '0';
 		else if (str[b->i] >= '1' && str[b->i] <= '9')
 			get_width(b, str);
+		else if (str[b->i] == 'l' || str[b->i] == 'h')
+			parse_length(str, b);
 		b->i++;
 	}
 	//ft_putstr("i've parsed\n");

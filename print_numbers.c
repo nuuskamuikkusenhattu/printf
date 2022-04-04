@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 13:18:33 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:17:52 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,20 @@ void	print_hash(t_build *b)
 	if (b->flag == 'o')
 	{
 		write(1, "0", 1);
-		b->print_count ++;	
+		b->print_count ++;
+		b->precision--;
+		if (b->width > b->strlen - 1)
+			b->width--;
 	}
-	else if (b->flag == 'x')
+	else
 	{
-		write(1, "0x", 2);
+		if (b->flag == 'x')
+			write(1, "0x", 2);
+		else if (b->flag == 'X')
+			write(1, "0X", 2);
 		b->print_count += 2;
-	}
-		
-	else if (b->flag == 'X')
-	{
-		write(1, "0X", 2);
-		b->print_count += 2;
+		if (b->width > b->strlen - 2)
+			b->width-= 2;
 	}
 }
 
@@ -65,7 +67,7 @@ void	print_number(t_build *b, char *str)
 			write(1, "-", 1);
 		write(1, str, b->strlen - written);
 	}
-	b->print_count += b->strlen + written;
+	b->print_count += b->strlen + written + b->isneg;
 }
 // di
 void	signed_ints(t_build *b, va_list list)
@@ -98,8 +100,6 @@ void	unsigned_ints(t_build *b, va_list list)
 	unsigned long long int	num;
 	char 					*str;
 
-	if (b->hashtag == '#') //ei toimi, pitaa saada tukemaan width ja muita erikoistapauksia
-		print_hash(b);
 	if (b->length == 'H')
 		num = (unsigned char)va_arg(list, int);
 	else if (b->length == 'h')
@@ -110,6 +110,8 @@ void	unsigned_ints(t_build *b, va_list list)
 		num = (unsigned long long int)va_arg(list, unsigned long int);
 	else
 		num = (unsigned long long int)va_arg(list, unsigned long long int);
+	if (b->hashtag == 1)
+		print_hash(b);
 	str = printf_itoabase(num, b->base, b->precision, b);
 	if (b->flag == 'X')
 		ft_capitalize(str);

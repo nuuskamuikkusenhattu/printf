@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/01 16:44:53 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:11:15 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,17 @@ void 	new_build(t_build *b);
 //width
 void	define_minus(t_build *build, const char *format);
 void	get_width(t_build *b, const char *format);
+
+//length
+void	parse_length(const char *str, t_build *b);
+
 //precision
 void	set_precision(t_build *build, const char *format, va_list list);
 
 //integers
 void	signed_ints(t_build *build, va_list list);
 void	unsigned_ints(t_build *build, va_list list);
-char	*printf_itoabase(unsigned int nbr, int base, int precision, t_build *b);
+char	*printf_itoabase(unsigned long long int nbr, int base, int p, t_build *b);
 
 //floats
 char	*ftoa(long double d, int precision);

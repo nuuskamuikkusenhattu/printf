@@ -6,13 +6,13 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 13:09:20 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 16:03:14 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static char	*fill(unsigned int nbr, int base, int len, int prec)
+static char	*fill(unsigned long long int nbr, int base, int len, int prec)
 {
 	int		temp;
 	char	*str;
@@ -48,7 +48,7 @@ static char	*fill(unsigned int nbr, int base, int len, int prec)
 	return (str);
 }
 
-static int	num_len(unsigned int nbr, int base, t_build *b)
+static int	num_len(unsigned long long int nbr, int base, t_build *b)
 {
 	int		len;
 
@@ -64,14 +64,14 @@ static int	num_len(unsigned int nbr, int base, t_build *b)
 	return (len);
 }
 
-char	*printf_itoabase(unsigned int nbr, int base, int precision, t_build *b)
+char	*printf_itoabase(unsigned long long int nbr, int base, int p, t_build *b)
 {
 	int			len;
 
-	if (precision == 0 && nbr == 0)
+	if (p == 0 && nbr == 0)
 		return (ft_strdup(""));
 	if (base < 2)
 		return (NULL);
 	len = num_len(nbr, base, b);
-	return (fill(nbr, base, len - 1, precision));
+	return (fill(nbr, base, len - 1, p));
 }

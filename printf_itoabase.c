@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:54:39 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:09:20 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static int	num_len(unsigned int nbr, int base, t_build *b)
 		len++;
 	}
 	b->strlen = len;
+	if (b->precision > len)
+		b->strlen += (b->precision - len);
 	return (len);
 }
 
@@ -66,6 +68,8 @@ char	*printf_itoabase(unsigned int nbr, int base, int precision, t_build *b)
 {
 	int			len;
 
+	if (precision == 0 && nbr == 0)
+		return (ft_strdup(""));
 	if (base < 2)
 		return (NULL);
 	len = num_len(nbr, base, b);

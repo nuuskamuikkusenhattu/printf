@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/01 16:22:54 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:18:33 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	print_number(t_build *b, char *str)
 		{
 			write(1, &b->fill, 1);
 			b->width--;
+			written++;
 		}
 	}
 	else

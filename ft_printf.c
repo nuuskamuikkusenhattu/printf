@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/01 16:44:08 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:59:01 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
 		|| str[b->i] == 'X')
 	{
-		// ft_putstr("i think its a ouxX\n");
+		//ft_putstr("i think its a ouxX\n");
 		if (str[b->i] == 'x' || str[b->i] == 'X')
 			b->base = 16;
 		if (str[b->i] == 'o')
@@ -91,7 +91,7 @@ static void	parse_flag(const char *str, t_build *b, va_list list)
 			b->space = 1;
 		else if (str[b->i] == '.')
 			set_precision(b, str, list);
-		else if (str[b->i] == '0')
+		else if (str[b->i] == '0' && (str[b->i - 1] != '.') && b->minus == 0)
 			b->fill = '0';
 		else if (str[b->i] >= '1' && str[b->i] <= '9')
 			get_width(b, str);

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/01 16:34:55 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 12:55:44 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,20 +116,43 @@ static void percent_test()
 static void ellas_tests()
 {
 	int ret1,ret2;
-	// ft_printf("%lld\n", 9223372036854775807);
-	// ft_printf("%lld\n", -9223372036854775808);
-	// ft_printf("%-015.8d\n", 1000000);
-	// ft_printf("%.d %.0d\n", 42, 43);
-	// ft_printf("%.d %.0d\n", 0, 0);
-	// ft_printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
-	// ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
-	// ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
-	ret1 = printf("%5.x %5.0x\n", 0, 0);
-	ret2 = ft_printf("%5.x %5.0x\n", 0, 0);
+
+	// ret1 = printf("%ld\n", 9223372036854775807);
+	// ret2 = ft_printf("%ld\n", 9223372036854775807);
+	// printf("%d %d\n", ret1, ret2);
+	
+	// ret1 = printf("%lld\n", -9223372036854775808);
+	// ret2 = ft_printf("%lld\n", -9223372036854775808);
+	// printf("%d %d\n", ret1, ret2);
+	
+	ret1 = printf("%-015.8d\n", 1000000);
+	ret2 = ft_printf("%-015.8d\n", 1000000);
 	printf("%d %d\n", ret1, ret2);
-	ret1 = printf("%.x %.0x\n", 0, 0);
-	ret2 = ft_printf("%.x %.0x\n", 0, 0);
-	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%.d %.0d\n", 42, 43);
+	// ret2 = ft_printf("%.d %.0d\n", 42, 43);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%.d %.0d\n", 0, 0);
+	// ret2 = ft_printf("%.d %.0d\n", 0, 0);
+	// printf("%d %d\n", ret1, ret2);
+
+	//not working yet
+	// ret1 = printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
+	// ret2 = ft_printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
+	// printf("%d %d\n", ret1, ret2);
+
+	
+	// ret1 = printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
+	// ret2 = ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 0, 0, 0, 0);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
+	// ret2 = ft_printf("'%%.' '%.o' '%.u' '%.x' '%.X'\n", 392082, 392082, 392082, 392082);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%5.x %5.0x\n", 0, 0);
+	// ret2 = ft_printf("%5.x %5.0x\n", 0, 0);
+	// printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%.x %.0x\n", 0, 0);
+	// ret2 = ft_printf("%.x %.0x\n", 0, 0);
+	// printf("%d %d\n", ret1, ret2);
 	// ft_printf("%5.x %5.0x\n", 0, 0);
 	// ft_printf("%.15f\n", 3.141593);
 	// ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);

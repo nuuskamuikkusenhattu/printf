@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/01 16:45:14 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:18:26 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	define_minus(t_build *build, const char *format)
 	build->i++;
 	if (format[build->i] == '0')
 		build->i++;
-	build->width = ft_atoi(format + build->i + 1);
+	build->width = ft_atoi(format + build->i);
 	ret += ft_num_length(build->width);
-	build->i += ret;
+	build->i += ret - 1;
 }
 /*
 this function is called after reading a dot.
@@ -57,6 +57,7 @@ void	get_width(t_build *b, const char *format)
 {
 	int		w;
 
+	//ft_putstr("im here to get the width\n"); //debug
 	w = ft_atoi(format + b->i);
 	b->width += w;
 	b->i += ft_num_length(w) - 1;

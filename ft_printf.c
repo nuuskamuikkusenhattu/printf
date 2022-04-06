@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 16:12:00 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:51:25 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 		// ft_putstr("i think its a float\n");
 	}
 	else if (str[b->i] == '%')
-	{
-		write(1, &str[b->i], 1);
-		b->print_count++;
-	}
+		print_char(str[b->i], b);
 	else
 		b->i--;
 }

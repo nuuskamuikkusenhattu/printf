@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 13:18:26 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:41:20 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	set_precision(t_build *b, const char *format, va_list list)
 		b->i += ft_num_length(pres) - 1;
 	}
 	else if (format[b->i] == '*')
+	{
 		b->precision = (int) va_arg(list, int);
+		b->i--;
+	}
 	else
 		b->i--;
 }

@@ -1,2 +1,21 @@
-pointerit
-jos arvo on 0 nii tapahtuu outouksia
+sepostelija — 04/04/2022
+%% left ja right ja muut caset
+null pointers
+tulosta 0x0 kaikilla string printin säännöillä
+precision tuo 0 perään 
+char ja string pitää käsitellä kaikki caset, plus,minus,space 
+floats = long doublea aina vaan
+tarkista onko neg, jos on niin *-1
+precision -> kato hash, kato muut
+cap precision 20
+bankers rounding -> vissii lahempaan parilliseen lukuun
+    res = 0.5;
+    while (precision-- > 0)
+        res = res / 10;
+    return (x + res);
+
+oisko järkee olla joku predot ja postdot juttu? emt
+sen jälkiosanhan saa ku vähentää doublesta unsigned long longin
+ja kertomalla precision ajan 10:lla 
+sepostelija — 04/04/2022
+pitääköhä malloc noi stringit johon tallentaa itoabasen palautuvan, iha vaikka strnew(1)

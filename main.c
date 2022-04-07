@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 16:19:23 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:11:10 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ static void string_test()
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("printing two strings: %s%s\n", str1, str2);
 	ret2 = ft_printf("printing two strings: %s%s\n", str1, str2);
+	printf("%d %d\n", ret1, ret2);
+	str1 = printf("%.2s is a string\n", "this");
+	str2 = ft_printf("%.2s is a string\n", "this");
 	printf("%d %d\n", ret1, ret2);
 }
 static void char_test()
@@ -91,6 +94,42 @@ static void x_test()
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%x %x %x\n", 42242, -2442424, 0);
 	ret2 = printf("%x %x %x\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%x %d\n", 0, 0);
+	ret2 = ft_printf("%x %d\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%x\n", 4294967296);
+	ret2 = ft_printf("%x\n", 4294967296);
+	printf("%d %d\n", ret1, ret2);
+	// ret1 = printf("%x", test);
+	// ret2 = ft_printf("%x", test);
+	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%10x\n", 42);
+	ret2 = ft_printf("%10x\n", 42);
+	printf("%d %d\n", ret1, ret2);
+	
+}
+
+static void xX_hash_test()
+{
+	int ret1, ret2;
+	ret1 = printf("%#x\n", 0);
+	ret2 = ft_printf("%#x\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%#8x\n", 42);
+	ret2 = ft_printf("%#8x\n", 42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("@moulitest: %#.x %#.0x\n", 0, 0);
+	ret2 = ft_printf("@moulitest: %#.x %#.0x\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("@moulitest: %.x %.0x\n", 0, 0);
+	ret2 = ft_printf("@moulitest: %.x %.0x\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("@moulitest: %5.x %5.0x\n", 0, 0);
+	ret2 = ft_printf("@moulitest: %5.x %5.0x\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%#08x\n", 42);
+	ret2 = ft_printf("%#08x\n", 42);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -192,8 +231,9 @@ int main(void)
 	//o_test();
 	//x_test();
 	//X_test();
+	xX_hash_test();
 	//percent_test();
-	ellas_tests();
+	//ellas_tests();
 	//float_test();
 	return (0);
 }

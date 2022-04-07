@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/06 11:48:22 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/06 11:55:16 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void print_pointer(t_build *b, va_list list)
 		print_string(b, "0x0");
 		while (b->precision > 0)
 		{
-			write(1, '0', 1);
+			write(1, "0", 1);
 			b->precision--;
 			b->print_count++;
 		}

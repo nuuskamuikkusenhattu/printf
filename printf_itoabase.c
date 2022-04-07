@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 16:03:14 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:56:14 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*printf_itoabase(unsigned long long int nbr, int base, int p, t_build *b)
 {
 	int			len;
 
-	if (p == 0 && nbr == 0)
+	if (p == 0 && nbr == 0 && b->base == 10)
 		return (ft_strdup(""));
 	if (base < 2)
 		return (NULL);

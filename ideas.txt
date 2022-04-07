@@ -1,5 +1,4 @@
 sepostelija — 04/04/2022
-%% left ja right ja muut caset
 null pointers
 tulosta 0x0 kaikilla string printin säännöillä
 precision tuo 0 perään 

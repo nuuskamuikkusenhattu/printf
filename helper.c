@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/06 11:41:20 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:04:07 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	set_precision(t_build *b, const char *format, va_list list)
 	int		pres;
 
 	b->i++;
-	if (format[b->i] >= '0' && format[b->i] <= '9')
+	if (format[b->i] >= '1' && format[b->i] <= '9')
 	{
 		pres =  ft_atoi(format + b->i);
 		b->precision = pres;
@@ -47,11 +47,14 @@ void	set_precision(t_build *b, const char *format, va_list list)
 	}
 	else if (format[b->i] == '*')
 	{
-		b->precision = (int) va_arg(list, int);
+		b->precision = (int)va_arg(list, int);
 		b->i--;
 	}
 	else
+	{
+		b->precision = 0;
 		b->i--;
+	}
 }
 /*
 this function sets width after a digit between 1-9 is read.

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/04 16:17:52 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 17:22:34 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_hash(t_build *b)
 		else if (b->flag == 'X')
 			write(1, "0X", 2);
 		b->print_count += 2;
-		if (b->width > b->strlen - 2)
+		if (b->width > b->strlen - 2 && b->fill != '0')
 			b->width-= 2;
 	}
 }
@@ -37,7 +37,7 @@ void	print_hash(t_build *b)
 void	print_number(t_build *b, char *str)
 {
 	int		written;
-
+	
 	written = 0;
 	if (b->minus == 1)
 	{
@@ -45,17 +45,19 @@ void	print_number(t_build *b, char *str)
 			printf_plus_or_space(b);
 		else if (b->isneg == 1)
 			write(1, "-", 1);
+		if (b->hashtag == 1 && b->iszero == 0)
+			print_hash(b);
 		write(1, str, b->strlen);
-		while (b->width - b->plus - b->space > b->strlen)
+		while (b->width - b->plus - b->space - b->prefix > b->strlen)
 		{
 			write(1, &b->fill, 1);
 			b->width--;
 			written++;
 		}
 	}
-	else
+	else if (b->fill == ' ')
 	{
-		while (b->width - b->plus - b->space > b->strlen)
+		while (b->width - b->plus - b->space - b->prefix > b->strlen)
 		{
 			write(1, &b->fill, 1);
 			b->width--;
@@ -65,7 +67,25 @@ void	print_number(t_build *b, char *str)
 			printf_plus_or_space(b);
 		else if (b->isneg == 1)
 			write(1, "-", 1);
-		write(1, str, b->strlen - written);
+		if (b->hashtag == 1 && b->iszero == 0)
+			print_hash(b);
+		write(1, str, b->strlen);
+	}
+	else
+	{
+		if (b->hashtag == 1 && b->iszero == 0)
+			print_hash(b);
+		while (b->width - b->plus - b->space - b->prefix > b->strlen)
+		{
+			write(1, &b->fill, 1);
+			b->width--;
+			written++;
+		}
+		if ((b->plus == 1 && b->isneg == 0) || (b->space == 1 && b->isneg == 0))
+			printf_plus_or_space(b);
+		else if (b->isneg == 1)
+			write(1, "-", 1);
+		write(1, str, b->strlen);
 	}
 	b->print_count += b->strlen + written + b->isneg;
 }
@@ -110,12 +130,18 @@ void	unsigned_ints(t_build *b, va_list list)
 		num = (unsigned long long int)va_arg(list, unsigned long int);
 	else
 		num = (unsigned long long int)va_arg(list, unsigned long long int);
-	if (b->hashtag == 1)
-		print_hash(b);
 	str = printf_itoabase(num, b->base, b->precision, b);
 	if (b->flag == 'X')
 		ft_capitalize(str);
-	print_number(b, str);
+	if (num == 0)
+	{
+		b->iszero = 1;
+		b->prefix = 0;
+	}
+	if (b->precision != 0)
+		print_number(b, str);
+	else
+		print_string(b, "");
 	free(str);
 }
 //written in home
@@ -129,6 +155,8 @@ void	floats(t_build *b, va_list list)
 		num = (long double)va_arg(list, long double);
 	else
 		num = (long double)va_arg(list, double);
+	if (b->hashtag == 1 && b->precision == 0)
+		b->precision = 1;
 	str = ftoa(num, b->precision);
 	len = (int) ft_strlen(str);
 	write(1, str, len);

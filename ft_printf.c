@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/06 11:51:25 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 13:45:31 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 		if (str[b->i] == 'x' || str[b->i] == 'X')
 			b->base = 16;
 		if (str[b->i] == 'o')
+		{
 			b->base = 8;
+			if (b->hashtag == 1)
+				b->prefix = 1;
+		}
 		unsigned_ints(b, list);
 	}
 	else if (str[b->i] == 'c')
@@ -87,7 +91,10 @@ static void	parse_flag(const char *str, t_build *b, va_list list)
 		else if (str[b->i] == ' ')
 			b->space = 1;
 		else if (str[b->i] == '#')
+		{
 			b->hashtag = 1;
+			b->prefix = 2;
+		}
 		else if (str[b->i] == '.')
 			set_precision(b, str, list);
 		else if (str[b->i] == '0' && (str[b->i - 1] != '.') && b->minus == 0)

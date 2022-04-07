@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/07 13:45:31 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 22:17:58 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 			if (b->hashtag == 1)
 				b->prefix = 1;
 		}
+		b->space = 0;
+		b->plus = 0;
 		unsigned_ints(b, list);
 	}
 	else if (str[b->i] == 'c')
@@ -118,14 +120,8 @@ static void	print_unwritten(const char *format, t_build *b)
 	b->unwritten = 0;
 }
 
-static int	printf_identify_flag(const char *format, va_list list)
+static void	printf_identify_flag(const char *format, va_list list, t_build *b)
 {
-	t_build	*b;
-
-	b = (t_build *) malloc(sizeof(t_build));
-	if (!b)
-		exit(-1);
-	new_build(b);
 	while (format[b->i] != '\0')
 	{
 		if (format[b->i] == '%')
@@ -144,15 +140,21 @@ static int	printf_identify_flag(const char *format, va_list list)
 	}
 	if (b->unwritten != 0)
 		print_unwritten(format, b);
-	return (b->print_count);
 }
 
 int ft_printf(const char * format, ...)
 {
+	t_build	*b;
+	int		ret;
+	b = (t_build *) malloc(sizeof(t_build));
+	if (!b)
+		exit(-1);
+	new_build(b);
 	va_list list;
 	va_start(list, format);
-	int ret;
-	ret = printf_identify_flag(format, list);
+	printf_identify_flag(format, list, b);
 	va_end(list);
+	ret = b->print_count;
+	free(b);
 	return (ret);
 }

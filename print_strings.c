@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:32:32 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/07 16:41:47 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:20:21 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	print_string_right(char *str, int len, t_build *b)
 
 void	print_string(t_build *b, char *str)
 {
+	int		len;
 	if (!str)
 	{
 		//ft_putstr("i think its a null\n");
@@ -54,15 +55,16 @@ void	print_string(t_build *b, char *str)
 	else
 	{
 	//ft_putstr("i dont think its a null\n");
-	if (b->precision == 1)
-		b->precision = (int) ft_strlen(str);
-	if (b->width > b->precision)
-		b->print_count += b->width;
-	else
-		b->print_count += b->precision;
-	if (b->minus)
-		print_string_left(str, b->precision, b);
-	else
-		print_string_right(str, b->precision, b);
+		len = (int) ft_strlen(str);
+		if (b->precision == 1 || b->precision > len)
+			b->precision = len;
+		if (b->width > b->precision)
+			b->print_count += b->width;
+		else
+			b->print_count += b->precision;
+			if (b->minus)
+				print_string_left(str, b->precision, b);
+			else
+				print_string_right(str, b->precision, b);	
 	}
 }

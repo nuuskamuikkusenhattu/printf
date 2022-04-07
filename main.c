@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/07 17:11:10 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 22:24:58 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,14 @@ static void string_test()
 	ret1 = printf("printing two strings: %s%s\n", str1, str2);
 	ret2 = ft_printf("printing two strings: %s%s\n", str1, str2);
 	printf("%d %d\n", ret1, ret2);
-	str1 = printf("%.2s is a string\n", "this");
-	str2 = ft_printf("%.2s is a string\n", "this");
+	ret1 = printf("%.2s is a string\n", "this");
+	ret2 = ft_printf("%.2s is a string\n", "this");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.2s is a string\n", "");
+	ret2 = ft_printf("%.2s is a string\n", "");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%-.2s is a string\n", "this");
+	ret2 = ft_printf("%-.2s is a string\n", "this");
 	printf("%d %d\n", ret1, ret2);
 }
 static void char_test()
@@ -56,6 +62,18 @@ static void d_test()
 	ret1 = printf("%d %d %d\n", 42242, -2442424, 0);
 	ret2 = printf("%d %d %d\n", 42242, -2442424, 0);
 	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%0+5d\n", 42);
+	ret2 = ft_printf("%0+5d\n", 42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%5d\n", -42);
+	ret2 = ft_printf("%5d\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%0+5d\n", -42);
+	ret2 = ft_printf("%0+5d\n", -42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%03.2d\n", 0);
+	ret2 = ft_printf("%03.2d\n", 0);
+	printf("%d %d\n", ret1, ret2);
 }
 
 static void i_test()
@@ -71,6 +89,17 @@ static void i_test()
 	printf("%d %d\n", ret1, ret2);
 }
 
+static void u_test()
+{
+	int ret1, ret2;
+	ret1 = printf("% u\n", 4294967295);
+	ret2 = ft_printf("% u\n", 4294967295);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%+u\n", 4294967295);
+	ret2 = printf("%+u\n", 4294967295);
+	printf("%d %d\n", ret1, ret2);
+}
+
 static void o_test()
 {
 	int n = 42;
@@ -81,6 +110,9 @@ static void o_test()
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%o %o %o\n", 42242, -2442424, 0);
 	ret2 = printf("%o %o %o\n", 42242, -2442424, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%-#6o\n", 2500);
+	ret2 = ft_printf("%-#6o\n", 2500);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -101,15 +133,19 @@ static void x_test()
 	ret1 = printf("%x\n", 4294967296);
 	ret2 = ft_printf("%x\n", 4294967296);
 	printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%x", test);
-	// ret2 = ft_printf("%x", test);
-	// printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%10x\n", 42);
 	ret2 = ft_printf("%10x\n", 42);
 	printf("%d %d\n", ret1, ret2);
 	
 }
 
+static void o_hash_test()
+{
+	int ret1, ret2;
+	ret1 = printf("@moulitest: %#.o %#.0o\n", 0, 0);
+	ret2 = ft_printf("@moulitest: %#.o %#.0o\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+}
 static void xX_hash_test()
 {
 	int ret1, ret2;
@@ -130,6 +166,9 @@ static void xX_hash_test()
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%#08x\n", 42);
 	ret2 = ft_printf("%#08x\n", 42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%#-08x\n", 42);
+	ret2 = ft_printf("%#-08x\n", 42);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -218,8 +257,12 @@ static void ellas_tests()
 }
 void	float_test()
 {
-	ft_printf("%.15f\n", 3.141593);
-	ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
+	int ret1, ret2;
+	ret1 = printf("%f\n", 3.5);
+	ret2 = ft_printf("%f\n", 3.5);
+	printf("%d %d\n", ret1, ret2);
+	//ft_printf("%.15f\n", 3.141593);
+	//ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
 }
 
 int main(void)
@@ -229,11 +272,13 @@ int main(void)
 	//d_test();
 	//i_test();
 	//o_test();
+	//u_test();
 	//x_test();
 	//X_test();
-	xX_hash_test();
+	//o_hash_test();
+	//xX_hash_test();
 	//percent_test();
 	//ellas_tests();
-	//float_test();
+	float_test();
 	return (0);
 }

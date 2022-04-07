@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/07 17:04:07 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:19:19 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,9 @@ it sets the minus to be true, and gets width with ft_atoi.
 */
 void	define_minus(t_build *build, const char *format)
 {
-	int		ret;
-
-	ret = 0;
 	build->minus = 1;
-	build->i++;
-	if (format[build->i] == '0')
+	if (format[build->i + 1] && format[build->i + 1] == '0')
 		build->i++;
-	build->width = ft_atoi(format + build->i);
-	ret += ft_num_length(build->width);
-	build->i += ret - 1;
 }
 /*
 this function is called after reading a dot.

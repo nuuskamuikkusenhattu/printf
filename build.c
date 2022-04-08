@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:21:17 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/07 17:06:16 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:43:21 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void reset_build(t_build *b)
 	b->isneg = 0;
 	b->iszero = 0;
 	b->prefix = 0;
+	b->written = 0;
 }
 
 void new_build(t_build *b)
@@ -53,6 +54,7 @@ void new_build(t_build *b)
 	b->isneg = 0;
 	b->iszero = 0;
 	b->prefix = 0;
+	b->written = 0;
 }
 /*
 

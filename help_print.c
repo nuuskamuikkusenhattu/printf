@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 21:55:22 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/31 22:00:56 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/08 14:18:24 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,25 @@ void	printf_plus_or_space(t_build *b)
 	{
 		write (1, " ", 1);
 		b->print_count++;
+	}
+}
+
+void	print_hash(t_build *b)
+{
+	if (b->flag == 'o')
+	{
+		write(1, "0", 1);
+		b->print_count ++;
+		b->precision--;
+	}
+	else
+	{
+		if (b->flag == 'x')
+			write(1, "0x", 2);
+		else if (b->flag == 'X')
+			write(1, "0X", 2);
+		b->print_count += 2;
+		if (b->width > b->strlen - 2 && b->fill != '0' && b->minus != 1)
+			b->width-= 2;
 	}
 }

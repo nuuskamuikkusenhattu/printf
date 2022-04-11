@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 12:03:22 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:12:05 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int ft_printf(const char * format, ...)
 {
 	t_build	*b;
 	int		ret;
+
 	b = (t_build *) malloc(sizeof(t_build));
 	if (!b)
 		exit(-1);

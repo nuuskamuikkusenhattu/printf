@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 12:02:08 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:20:18 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ void	print_string(t_build *b, char *str);
 //helpers
 void	printf_plus_or_space(t_build *b);
 void	print_hash(t_build *b);
+int		is_valid_prechar(char c);
+void	octal_or_hexal(t_build *b, char c);
 
 #endif

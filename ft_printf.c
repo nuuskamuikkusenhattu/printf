@@ -6,52 +6,26 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 12:12:05 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:23:22 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-You have to manage the following conversions: csp
-• You have to manage the following conversions: diouxX with the following flags: hh,
-h, l and ll.
-• You have to manage the following conversion: f with the following flags: l and L.
-• You must manage %%
-• You must manage the flags #0-+ and space
-• You must manage the minimum field-width
-• You must manage the precision
-*/
 #include "printf.h"
 
-static int	is_valid_prechar(char c)
-{
-	if (c == '-' || c == '.' || c == 'l' || c == 'h' || c == '#' \
-	 || (c >= '0' && c <= '9' ) || c == ' ' || c == '+' || c == '-')
-		return (1);
-	return (0);
-}
 static void	identify_flag(const char *str, t_build *b, va_list list)
 {
 	b->flag = str[b->i];
 	if (b->flag == 'd' || b->flag == 'i')
-		signed_ints(b, list);	
+		signed_ints(b, list);
 	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
 		|| str[b->i] == 'X')
 	{
-		if (str[b->i] == 'x' || str[b->i] == 'X')
-			b->base = 16;
-		if (str[b->i] == 'o')
-		{
-			b->base = 8;
-			if (b->hashtag == 1)
-				b->prefix = 1;
-		}
-		b->space = 0;
-		b->plus = 0;
+		octal_or_hexal(b, str[b->i]);
 		unsigned_ints(b, list);
 	}
 	else if (str[b->i] == 'c')
 		print_char((char) va_arg(list, int), b);
-	else if(str[b->i] == 's')
+	else if (str[b->i] == 's')
 		print_string(b, (char *) va_arg(list, char *));
 	else if (str[b->i] == 'd')
 		floats(b, list);
@@ -119,16 +93,16 @@ static void	printf_identify_flag(const char *format, va_list list, t_build *b)
 		print_unwritten(format, b);
 }
 
-int ft_printf(const char * format, ...)
+int	ft_printf(const char *format, ...)
 {
 	t_build	*b;
 	int		ret;
+	va_list	list;
 
 	b = (t_build *) malloc(sizeof(t_build));
 	if (!b)
 		exit(-1);
 	new_build(b);
-	va_list list;
 	va_start(list, format);
 	printf_identify_flag(format, list, b);
 	va_end(list);

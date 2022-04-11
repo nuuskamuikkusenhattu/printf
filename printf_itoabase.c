@@ -6,18 +6,33 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:15:54 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/06 16:56:14 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:46:02 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-static char	*fill(unsigned long long int nbr, int base, int len, int prec)
+static void	fill_2(int len, unsigned long long int nbr, int base, char *str)
 {
 	int		temp;
+
+	while (len >= 0)
+	{
+		temp = nbr % base;
+		if (temp >= 10)
+			str[len] = 'a' - 10 + temp;
+		else
+			str[len] = temp + '0';
+		nbr = nbr / base;
+		len--;
+	}
+}
+
+static char	*fill(unsigned long long int nbr, int base, int len, int prec)
+{
 	char	*str;
 	int		i;
-	
+
 	i = 0;
 	if (prec > len)
 	{
@@ -35,16 +50,7 @@ static char	*fill(unsigned long long int nbr, int base, int len, int prec)
 		str = ft_strnew(len);
 	if (!str)
 		return (NULL);
-	while (len >= 0)
-	{
-		temp = nbr % base;
-		if (temp >= 10)
-			str[len] = 'a' - 10 + temp;
-		else
-			str[len] = temp + '0';
-		nbr = nbr / base;
-		len--;
-	}
+	fill_2(len, nbr, base, str);
 	return (str);
 }
 
@@ -64,14 +70,14 @@ static int	num_len(unsigned long long int nbr, int base, t_build *b)
 	return (len);
 }
 
-char	*printf_itoabase(unsigned long long int nbr, int base, int p, t_build *b)
+char	*printf_itoabase(unsigned long long int n, int base, int p, t_build *b)
 {
 	int			len;
 
-	if (p == 0 && nbr == 0 && b->base == 10)
+	if (p == 0 && n == 0 && b->base == 10)
 		return (ft_strdup(""));
 	if (base < 2)
 		return (NULL);
-	len = num_len(nbr, base, b);
-	return (fill(nbr, base, len - 1, p));
+	len = num_len(n, base, b);
+	return (fill(n, base, len - 1, p));
 }

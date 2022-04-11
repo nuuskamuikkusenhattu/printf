@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 11:00:26 by spuustin          #+#    #+#             */
-/*   Updated: 2022/03/24 11:59:16 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:09:13 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	print_char_left(char c, t_build *b)
 {
 	write(1, &c, 1);
-	while(b->width > 1)
+	while (b->width > 1)
 	{
 		write(1, &(b->fill), 1);
 		b->width--;
@@ -24,7 +24,7 @@ void	print_char_left(char c, t_build *b)
 
 void	print_char_right(char c, t_build *b)
 {
-	while(b->width > 1)
+	while (b->width > 1)
 	{
 		write(1, &(b->fill), 1);
 		b->width--;

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/07 22:17:58 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:03:22 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,12 @@ static int	is_valid_prechar(char c)
 }
 static void	identify_flag(const char *str, t_build *b, va_list list)
 {
-	// ft_putstr("im soon to identify\n");
-	// ft_putstr("the flag in question is: ");
-	// ft_putchar(str[b->i]);
-	// ft_putstr(" and i store it to be: ");
 	b->flag = str[b->i];
-	// ft_putchar(b->flag);
-	// write(1,"\n", 1);
 	if (b->flag == 'd' || b->flag == 'i')
-	{
-		// ft_putstr("i think its a di\n");
-		signed_ints(b, list);
-	}
-		
+		signed_ints(b, list);	
 	else if (str[b->i] == 'o' || str[b->i] == 'u' || str[b->i] == 'x' \
 		|| str[b->i] == 'X')
 	{
-		//ft_putstr("i think its a ouxX\n");
 		if (str[b->i] == 'x' || str[b->i] == 'X')
 			b->base = 16;
 		if (str[b->i] == 'o')
@@ -61,21 +50,11 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 		unsigned_ints(b, list);
 	}
 	else if (str[b->i] == 'c')
-	{
-		// ft_putstr("i think its a char\n");
 		print_char((char) va_arg(list, int), b);
-	}
-		
 	else if(str[b->i] == 's')
-	{
-		//ft_putstr("i think its a string\n");
 		print_string(b, (char *) va_arg(list, char *));
-	}
-		
 	else if (str[b->i] == 'd')
-	{
-		// ft_putstr("i think its a float\n");
-	}
+		floats(b, list);
 	else if (str[b->i] == '%')
 		print_char(str[b->i], b);
 	else
@@ -107,9 +86,7 @@ static void	parse_flag(const char *str, t_build *b, va_list list)
 			parse_length(str, b);
 		b->i++;
 	}
-	//ft_putstr("i've parsed\n");
 	identify_flag(str, b, list);
-	//ft_putstr("ive printed\n");
 	reset_build(b);
 }
 

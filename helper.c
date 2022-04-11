@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/08 14:42:40 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 11:51:04 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ this function is called after reading a dot.
 it then sets precision with ft_atoi, or from argument-list,
 depending if theres a * or a number between 1-9.
 */
+
 void	set_precision(t_build *b, const char *format, va_list list)
 {
 	int		pres;
@@ -34,7 +35,7 @@ void	set_precision(t_build *b, const char *format, va_list list)
 	b->i++;
 	if (format[b->i] >= '1' && format[b->i] <= '9')
 	{
-		pres =  ft_atoi(format + b->i);
+		pres = ft_atoi(format + b->i);
 		b->precision = pres;
 		b->i += ft_num_length(pres) - 1;
 	}
@@ -52,11 +53,11 @@ void	set_precision(t_build *b, const char *format, va_list list)
 /*
 this function sets width after a digit between 1-9 is read.
 */
+
 void	get_width(t_build *b, const char *format)
 {
 	int		w;
 
-	//ft_putstr("im here to get the width\n"); //debug
 	w = ft_atoi(format + b->i);
 	b->width += w;
 	b->i += ft_num_length(w) - 1;

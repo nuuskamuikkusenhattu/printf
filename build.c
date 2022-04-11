@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/15 20:21:17 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/08 14:43:21 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 12:00:06 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //resets the values of a build to be empty other than the index (i)
 //and the print_count (value to be returned)
 
-void reset_build(t_build *b)
+void	reset_build(t_build *b)
 {
 	b->base = 10;
 	b->precision = 1;
@@ -33,9 +33,10 @@ void reset_build(t_build *b)
 	b->iszero = 0;
 	b->prefix = 0;
 	b->written = 0;
+	b->u_value = 0;
 }
 
-void new_build(t_build *b)
+void	new_build(t_build *b)
 {
 	b->print_count = 0;
 	b->i = 0;
@@ -55,19 +56,5 @@ void new_build(t_build *b)
 	b->iszero = 0;
 	b->prefix = 0;
 	b->written = 0;
+	b->u_value = 0;
 }
-/*
-
-	int		print_count;
-	int		i;
-	int		base;
-	long long	value;
-	char	dot;
-	int		precision;
-	char	flag;
-	int		width;
-	char	length; //h,H(hh),l,7(ll),L
-	char	plus;
-	char	minus;
-	char	hashtag; //adds a decimalpoint to floats even when no decimals
-*/

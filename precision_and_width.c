@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper.c                                           :+:      :+:    :+:   */
+/*   precision_and_width.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 11:51:04 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:00:43 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	set_precision(t_build *b, const char *format, va_list list)
 		b->precision = 0;
 		b->i--;
 	}
+	b->prec_defined = 1;
 }
 /*
 this function sets width after a digit between 1-9 is read.
@@ -61,4 +62,10 @@ void	get_width(t_build *b, const char *format)
 	w = ft_atoi(format + b->i);
 	b->width += w;
 	b->i += ft_num_length(w) - 1;
+}
+
+void	fix_precision_with_hash(t_build *b)
+{
+	if (b->flag == 'o' && b->precision != 0)
+		b->precision--;
 }

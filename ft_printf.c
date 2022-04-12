@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 12:23:22 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 15:00:36 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 		print_char((char) va_arg(list, int), b);
 	else if (str[b->i] == 's')
 		print_string(b, (char *) va_arg(list, char *));
-	else if (str[b->i] == 'd')
+	else if (str[b->i] == 'f')
 		floats(b, list);
 	else if (str[b->i] == '%')
 		print_char(str[b->i], b);

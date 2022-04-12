@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 16:02:29 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 11:51:30 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/11 14:57:13 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,6 @@ void	parse_length(const char *str, t_build *b)
 		else
 			b->length = 'h';
 	}
+	else if (str[b->i] == 'L')
+		b->length = 'D';
 }

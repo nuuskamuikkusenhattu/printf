@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 12:20:18 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 19:30:22 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_build
 	int						prefix;
 	int						written;
 	unsigned long long int	u_value;
+	long double				f_value;
+	int						prec_defined;
 }			t_build;
 
 int		ft_printf(const char*format, ...);
@@ -64,7 +66,7 @@ char	*printf_itoabase(unsigned long long int n, int base, int p, t_build *b);
 void	get_unsigned_value(t_build *b, va_list list);
 
 //floats
-char	*ftoa(long double d, int precision);
+char	*ftoa(long double d, int precision, t_build *b);
 void	floats(t_build *b, va_list list);
 
 //chars
@@ -75,8 +77,10 @@ void	print_string(t_build *b, char *str);
 
 //helpers
 void	printf_plus_or_space(t_build *b);
+void	print_only_width(t_build *b);
 void	print_hash(t_build *b);
 int		is_valid_prechar(char c);
 void	octal_or_hexal(t_build *b, char c);
+void	fix_precision_with_hash(t_build *b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 12:08:10 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:40:02 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void	print_num_with_space(t_build *b, char *str)
 		write(1, "-", 1);
 	if (b->hashtag == 1 && b->iszero == 0)
 		print_hash(b);
+	if (b->hashtag == 1 && b->iszero == 1 && b->precision == 0 && b->base == 16)
+		b->strlen = 0;
 	write(1, str, b->strlen);
 }
 
@@ -122,11 +124,11 @@ void	unsigned_ints(t_build *b, va_list list)
 		b->iszero = 1;
 		b->prefix = 0;
 	}
-	if (b->precision != 0)
-		print_number(b, str);
-	else if (b->flag == 'o' && b->hashtag == 1)
-		print_hash(b);
+	if (b->precision == 0 && b->u_value == 0 && b->width == 0 && b->hashtag == 0)
+		write(1, "", 0);
+	else if (b->precision == 0 && b->u_value == 0 && b->hashtag == 0)
+		print_only_width(b);
 	else
-		print_string(b, "");
+		print_number(b, str);
 	free(str);
 }

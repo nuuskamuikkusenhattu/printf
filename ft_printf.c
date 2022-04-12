@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/11 15:00:36 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 22:28:06 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static void	identify_flag(const char *str, t_build *b, va_list list)
 		print_string(b, (char *) va_arg(list, char *));
 	else if (str[b->i] == 'f')
 		floats(b, list);
+	else if (str[b->i] == 'p')
+		print_pointer(b, list);
 	else if (str[b->i] == '%')
 		print_char(str[b->i], b);
 	else
@@ -56,7 +58,7 @@ static void	parse_flag(const char *str, t_build *b, va_list list)
 			b->fill = '0';
 		else if (str[b->i] >= '1' && str[b->i] <= '9')
 			get_width(b, str);
-		else if (str[b->i] == 'l' || str[b->i] == 'h')
+		else if (str[b->i] == 'l' || str[b->i] == 'L' || str[b->i] == 'h')
 			parse_length(str, b);
 		b->i++;
 	}

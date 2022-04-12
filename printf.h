@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 19:30:22 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 21:05:33 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	signed_ints(t_build *build, va_list list);
 void	unsigned_ints(t_build *build, va_list list);
 char	*printf_itoabase(unsigned long long int n, int base, int p, t_build *b);
 void	get_unsigned_value(t_build *b, va_list list);
+void	print_number(t_build *b, char *str);
 
 //floats
 char	*ftoa(long double d, int precision, t_build *b);
@@ -74,6 +75,9 @@ void	print_char(char c, t_build *b);
 
 //strings
 void	print_string(t_build *b, char *str);
+
+//pointers
+void	print_pointer(t_build *b, va_list list);
 
 //helpers
 void	printf_plus_or_space(t_build *b);

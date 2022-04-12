@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 20:32:19 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 22:23:54 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ static void d_test()
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%03.2d\n", 0);
 	ret2 = ft_printf("%03.2d\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%0-3d}\n", 0);
+	ret2 = ft_printf("{%0-3d}\n", 0);
 	printf("%d %d\n", ret1, ret2);
 }
 
@@ -208,25 +211,25 @@ static void ellas_tests()
 {
 	int ret1,ret2;
 
-	// ret1 = printf("%ld\n", 922337203685477580);
-	// ret2 = ft_printf("%ld\n", 922337203685477580);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%ld\n", 922337203685477580);
+	ret2 = ft_printf("%ld\n", 922337203685477580);
+	printf("%d %d\n", ret1, ret2);
 	
-	// ret1 = printf("%lld\n", -922337203685477580);
-	// ret2 = ft_printf("%lld\n", -922337203685477580);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%lld\n", -922337203685477580);
+	ret2 = ft_printf("%lld\n", -922337203685477580);
+	printf("%d %d\n", ret1, ret2);
 	
-	// ret1 = printf("%-015.8d\n", 1000000);
-	// ret2 = ft_printf("%-015.8d\n", 1000000);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%.d %.0d\n", 42, 43);
-	// ret2 = ft_printf("%.d %.0d\n", 42, 43);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%.d %.0d\n", 0, 0);
-	// ret2 = ft_printf("%.d %.0d\n", 0, 0);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%-015.8d\n", 1000000);
+	ret2 = ft_printf("%-015.8d\n", 1000000);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.d %.0d\n", 42, 43);
+	ret2 = ft_printf("%.d %.0d\n", 42, 43);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.d %.0d\n", 0, 0);
+	ret2 = ft_printf("%.d %.0d\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
 
-	// printf("mainostauko 1\n");
+	printf("mainostauko 1\n");
 	ret1 = printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
 	ret2 = ft_printf("'%%#-10.10' '%#-10.10o' '%-10.10u' '%#-10.10x' '%#-10.10X'\n", 392082, 392082, 392082, 392082);
 	printf("%d %d\n", ret1, ret2);
@@ -252,22 +255,22 @@ static void ellas_tests()
 	ret2 = ft_printf("%.x %.0x\n", 0, 0);
 	printf("%d %d\n", ret1, ret2);
 	ft_printf("%5.x %5.0x\n", 0, 0);
-	// ret1 = printf("%\n");
-	// ret2 = ft_printf("%\n");
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%%\n");
-	// ret2 = ft_printf("%%\n");
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%sjeccu\n", NULL);
-	// ret2 = ft_printf("%sjeccu\n", NULL);
-	// printf("%d %d\n", ret1, ret2);
-	// ft_printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%.5s\n", NULL);
-	// ret2 = ft_printf("%.5s\n", NULL);
-	// printf("%d %d\n", ret1, ret2);
-	// ret1 = printf("%s\n", NULL);
-	// ret2 = ft_printf("%s\n", NULL);
-	// printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%\n");
+	ret2 = ft_printf("%\n");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%%\n");
+	ret2 = ft_printf("%%\n");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%sjeccu\n", NULL);
+	ret2 = ft_printf("%sjeccu\n", NULL);
+	printf("%d %d\n", ret1, ret2);
+	ft_printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.5s\n", NULL);
+	ret2 = ft_printf("%.5s\n", NULL);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%s\n", NULL);
+	ret2 = ft_printf("%s\n", NULL);
+	printf("%d %d\n", ret1, ret2);
 }
 void	float_test()
 {
@@ -287,6 +290,9 @@ void	float_test()
 	ret1 = printf("%.4f\n", 2.56);
 	ret2 = ft_printf("%.4f\n", 2.56);
 	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
+	ret2 = ft_printf("{%f}{%lf}{%Lf}\n", 1.42, 1.42, 1.42l);
+	printf("%d %d\n", ret1, ret2);
 	// ret1 = printf("%8.4f\n", 2.56);
 	// ret2 = ft_printf("%8.4f\n", 2.56);
 	// printf("%d %d\n", ret1, ret2);
@@ -294,6 +300,46 @@ void	float_test()
 	//ft_printf("%#f %#.f\n", (double)-56.2012685, (double)-56.2012685);
 }
 
+void	pointer_test()
+{
+	int a = 42;
+	int *i = &a;
+	char *s = "abcde";
+	int ret1, ret2;
+	ret1 = printf("%p\n", &i);
+	ret2 = ft_printf("%p\n", &i);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%p\n", NULL);
+	ret2 = ft_printf("%p\n", NULL);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.0p, %.p\n", 0, 0);
+	ret2 = ft_printf("%.0p, %.p\n", 0, 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%-13p}\n", &i);
+	ret2 = ft_printf("{%-13p}\n", &i);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%-13p}\n", NULL);
+	ret2 = ft_printf("{%-13p}\n", NULL);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%-13p}\n", &s);
+	ret2 = ft_printf("{%-13p}\n", &s);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.5p\n", 0);
+	ret2 = ft_printf("%.5p\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%9.2p\n", 1234);
+	ret2 = ft_printf("%9.2p\n", 1234);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%5p}\n", 0);
+	ret2 = printf("{%5p}\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%-15p}\n", 0);
+	ret2 = ft_printf("{%-15p}\n", 0);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%2.9p\n", 1234);
+	ret2 = ft_printf("%2.9p\n", 1234);
+	printf("%d %d\n", ret1, ret2);
+}
 
 int main(void)
 {
@@ -303,12 +349,13 @@ int main(void)
 	//i_test();
 	//o_test();
 	//u_test();
-	//x_test();
-	//X_test();
-	o_hash_test();
+	// x_test();
+	// X_test();
+	//o_hash_test();
 	//xX_hash_test();
 	//percent_test();
 	//ellas_tests();
-	//float_test();
+	float_test();
+	//pointer_test();
 	return (0);
 }

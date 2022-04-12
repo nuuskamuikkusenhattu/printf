@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 20:40:02 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 20:56:58 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	signed_ints(t_build *b, va_list list)
 void	unsigned_ints(t_build *b, va_list list)
 {
 	char	*str;
+
 
 	get_unsigned_value(b, list);
 	str = printf_itoabase(b->u_value, b->base, b->precision, b);

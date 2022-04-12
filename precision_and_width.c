@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 20:00:43 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 22:18:04 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	define_minus(t_build *build, const char *format)
 	build->minus = 1;
 	if (format[build->i + 1] && format[build->i + 1] == '0')
 		build->i++;
+	if (build->fill == '0')
+		build->fill = ' ';
 }
 /*
 this function is called after reading a dot.

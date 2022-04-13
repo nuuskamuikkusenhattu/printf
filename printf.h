@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:37:19 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 21:05:33 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:39:56 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	print_hash(t_build *b);
 int		is_valid_prechar(char c);
 void	octal_or_hexal(t_build *b, char c);
 void	fix_precision_with_hash(t_build *b);
+int		ft_av(t_build *b, int n);
 
 #endif

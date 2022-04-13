@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/13 21:25:14 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:52:39 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -349,6 +349,18 @@ void	bonus_asterisk()
 	printf("%d %d\n", ret1, ret2);
 	ret1 = printf("%.*s\n", 3, "hello\n");
 	ret2 = ft_printf("%.*s\n", 3, "hello\n");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%*d}\n", 5, 42);
+	ret2 = ft_printf("{%*d}\n", 5, 42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%*d}\n", -5, 42);
+	ret2 = ft_printf("{%*d}\n", -5, 42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%.*s}\n", -5, "1234");
+	ret2 = ft_printf("{%.*s}\n", -5, "1234");
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("{%*3d}\n", 5, 0);
+	ret2 = ft_printf("{%*3d}\n", 5, 0);
 	printf("%d %d\n", ret1, ret2);
 }
 

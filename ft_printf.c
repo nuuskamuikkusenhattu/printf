@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:25:46 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 22:28:06 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:39:24 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ static void	parse_flag(const char *str, t_build *b, va_list list)
 			b->hashtag = 1;
 			b->prefix = 2;
 		}
+		else if (str[b->i] == '*')
+			b->width = ft_av(b, (int)va_arg(list, int));
 		else if (str[b->i] == '.')
 			set_precision(b, str, list);
 		else if (str[b->i] == '0' && (str[b->i - 1] != '.') && b->minus == 0)

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:29:13 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 22:23:54 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/13 21:25:14 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,6 +341,17 @@ void	pointer_test()
 	printf("%d %d\n", ret1, ret2);
 }
 
+void	bonus_asterisk()
+{
+	int ret1, ret2;
+	ret1 = printf("%.*d\n", 5, 42);
+	ret2 = ft_printf("%.*d\n", 5, 42);
+	printf("%d %d\n", ret1, ret2);
+	ret1 = printf("%.*s\n", 3, "hello\n");
+	ret2 = ft_printf("%.*s\n", 3, "hello\n");
+	printf("%d %d\n", ret1, ret2);
+}
+
 int main(void)
 {
 	//string_test();
@@ -355,7 +366,8 @@ int main(void)
 	//xX_hash_test();
 	//percent_test();
 	//ellas_tests();
-	float_test();
+	//float_test();
 	//pointer_test();
+	bonus_asterisk();
 	return (0);
 }

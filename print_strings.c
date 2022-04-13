@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:32:32 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 21:26:47 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 22:35:40 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_string(t_build *b, char *str)
 	else
 	{
 		len = (int) ft_strlen(str);
-		if (b->prec_defined == 0|| b->precision > len)
+		if (b->prec_defined == 0 || b->precision > len)
 			b->precision = len;
 		if (b->width > b->precision)
 			b->print_count += b->width;

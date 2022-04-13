@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 19:38:23 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/12 20:56:58 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/12 22:35:21 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	unsigned_ints(t_build *b, va_list list)
 {
 	char	*str;
 
-
 	get_unsigned_value(b, list);
 	str = printf_itoabase(b->u_value, b->base, b->precision, b);
 	if (b->flag == 'X')
@@ -125,7 +124,8 @@ void	unsigned_ints(t_build *b, va_list list)
 		b->iszero = 1;
 		b->prefix = 0;
 	}
-	if (b->precision == 0 && b->u_value == 0 && b->width == 0 && b->hashtag == 0)
+	if (b->precision == 0 && b->u_value == 0 && b->width == 0 \
+	&& b->hashtag == 0)
 		write(1, "", 0);
 	else if (b->precision == 0 && b->u_value == 0 && b->hashtag == 0)
 		print_only_width(b);

@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 12:17:28 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/13 21:32:32 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:47:01 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,10 @@ void	octal_or_hexal(t_build *b, char c)
 	}
 	b->space = 0;
 	b->plus = 0;
+}
+
+void	hash(t_build *b)
+{
+	b->hashtag = 1;
+	b->prefix = 2;
 }

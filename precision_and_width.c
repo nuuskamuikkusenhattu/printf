@@ -6,7 +6,7 @@
 /*   By: spuustin <spuustin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:41:59 by spuustin          #+#    #+#             */
-/*   Updated: 2022/04/13 21:55:48 by spuustin         ###   ########.fr       */
+/*   Updated: 2022/04/14 11:45:09 by spuustin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	fix_precision_with_hash(t_build *b)
 		b->precision--;
 }
 
-int		ft_av(t_build *b, int n)
+int	ft_av(t_build *b, int n)
 {
 	if (n < 0)
 	{
